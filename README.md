@@ -116,13 +116,6 @@ docs/                  # PRD, Architecture, rules, phases, memory
 - [Memory](docs/memory.md) — Living project context
 - [CI Setup](docs/ci-setup.md) — GitHub Actions adoption guide
 
-## Team
-
-| Role | Members |
-|---|---|
-| Team | Shreya Sinha, Ritika Tiwari, Palak Agarwal, Rachana S |
-| Guide | K M Aishwarya, Assistant Professor, NIE Mysuru |
-
 ## Known Limitations
 
 Track B closes documented failure classes; it does not prove security. CryptoShift cannot fix network-layer issues, hardware/HSM constraints, closed-source visibility, or PQC algorithm maturity.
