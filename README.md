@@ -82,7 +82,7 @@ Three GitHub Actions workflows:
 | `cryptoshift-scan.yml` | push, PR, nightly, manual | Scan + enrich + artifact upload |
 | `cryptoshift-apply.yml` | manual, decision file push | Transform + verify + PR creation |
 
-See [docs/ci-setup.md](docs/ci-setup.md) for adoption instructions.
+See [ci-setup.md](ci-setup.md) for adoption instructions.
 
 ## Project Structure
 
