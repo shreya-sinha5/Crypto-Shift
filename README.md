@@ -113,7 +113,7 @@ docs/                  # PRD, Architecture, rules, phases, memory
 - [Architecture](docs/Architecture.md) — System design and data contracts
 - [Rules](docs/rules.md) — Hard constraints for AI and contributors
 - [Phases](docs/phases.md) — Project phases and cut order
-- [Memory](/main/memory.md) — Living project context
+- [Memory](memory.md) — Living project context
 - [CI Setup](docs/ci-setup.md) — GitHub Actions adoption guide
 
 ## Known Limitations
