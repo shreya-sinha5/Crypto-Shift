@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cryptoshift.dev/schemas/decision.json",
+  "title": "CryptoShift Decision",
+  "description": "Human reviewer decision for a finding.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "finding_id",
+    "reviewer",
+    "decision",
+    "timestamp"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "finding_id": {
+      "type": "string",
+      "pattern": "^f-[0-9]{4,}$"
+    },
+    "reviewer": {
+      "type": "string",
+      "description": "Username or identifier of the reviewer."
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["approved", "rejected", "deferred"],
+      "description": "Review decision."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Reviewer notes.",
+      "default": ""
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}
