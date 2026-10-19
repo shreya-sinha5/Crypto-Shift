@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cryptoshift.dev/schemas/enriched_cbom.json",
+  "title": "CryptoShift Enriched CBOM",
+  "description": "AST-linked, role-tagged, risk-scored CBOM finding.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "finding_id",
+    "cbom_ref",
+    "file",
+    "line",
+    "algorithm",
+    "role",
+    "role_confidence",
+    "risk",
+    "status"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "finding_id": {
+      "type": "string",
+      "pattern": "^f-[0-9]{4,}$",
+      "description": "Unique finding identifier."
+    },
+    "cbom_ref": {
+      "type": "string",
+      "description": "Component bom-ref from CycloneDX."
+    },
+    "file": {
+      "type": "string",
+      "description": "Source file path relative to repository root."
+    },
+    "line": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Line number of the finding."
+    },
+    "ast_node": {
+      "type": ["string", "null"],
+      "description": "AST node descriptor, e.g. MethodCallExpr:KeyPairGenerator.getInstance."
+    },
+    "algorithm": {
+      "type": "string",
+      "description": "Detected algorithm name (e.g. RSA, ECDSA, AES)."
+    },
+    "key_size": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "description": "Key size in bits, if applicable."
+    },
+    "role": {
+      "type": "string",
+      "enum": ["key_exchange", "signature", "symmetric", "hash", "unknown"],
+      "description": "Semantic role classified from AST context."
+    },
+    "role_confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Confidence score for role classification."
+    },
+    "call_context": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Abbreviated caller chain."
+    },
+    "indirect_usage": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this is an indirect usage of the crypto API."
+    },
+    "risk": {
+      "type": "object",
+      "required": ["sensitivity", "criticality", "lifespan", "score"],
+      "properties": {
+        "sensitivity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Data sensitivity score."
+        },
+        "criticality": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "System criticality score."
+        },
+        "lifespan": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Asset lifespan / HNDL exposure score."
+        },
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Composite risk score."
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["linked", "unlinked", "needs_human"],
+      "description": "Linkage status of the finding."
+    },
+    "unlinked_reason": {
+      "type": ["string", "null"],
+      "description": "Reason code if status is 'unlinked'."
+    }
+  },
+  "additionalProperties": false
+}
