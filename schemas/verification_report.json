@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cryptoshift.dev/schemas/verification_report.json",
+  "title": "CryptoShift Verification Report",
+  "description": "Two-track verification results. Overall = pass only if both tracks pass.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "finding_id",
+    "trackA",
+    "trackB",
+    "overall"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "finding_id": {
+      "type": "string",
+      "pattern": "^f-[0-9]{4,}$"
+    },
+    "trackA": {
+      "type": "object",
+      "required": ["status", "tests_run", "scope_ok"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["pass", "fail", "skipped"]
+        },
+        "tests_run": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tests_passed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tests_failed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "diffs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of behavioral differences detected."
+        },
+        "scope_ok": {
+          "type": "boolean",
+          "description": "True if patch only touches crypto call site and wrapper."
+        }
+      }
+    },
+    "trackB": {
+      "type": "object",
+      "required": ["status", "kat_results", "lint_results"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["pass", "fail", "skipped"]
+        },
+        "kat_results": {
+          "type": "object",
+          "properties": {
+            "total": { "type": "integer", "minimum": 0 },
+            "passed": { "type": "integer", "minimum": 0 },
+            "failed": { "type": "integer", "minimum": 0 },
+            "algorithms_tested": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "lint_results": {
+          "type": "object",
+          "properties": {
+            "total_rules": { "type": "integer", "minimum": 0 },
+            "passed": { "type": "integer", "minimum": 0 },
+            "failed": { "type": "integer", "minimum": 0 },
+            "violations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "rule": { "type": "string" },
+                  "severity": { "type": "string", "enum": ["error", "warning"] },
+                  "message": { "type": "string" },
+                  "location": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "pattern_flags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pattern": { "type": "string" },
+              "description": { "type": "string" },
+              "severity": { "type": "string" }
+            }
+          },
+          "description": "Known-attack-pattern screening results."
+        }
+      }
+    },
+    "overall": {
+      "type": "string",
+      "enum": ["pass", "fail"],
+      "description": "Pass only if both Track A and Track B pass."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}
