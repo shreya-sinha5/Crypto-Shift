@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+env/
+
+# Java
+java_helper/target/
+*.class
+*.jar
+*.war
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Artifacts (generated, not committed)
+artifacts/scan.json
+artifacts/enriched_cbom.json
+artifacts/candidates/*/
+artifacts/verification_report.json
+
+# Secrets
+.env
+*.pem
+*.key
+
+# Coverage
+htmlcov/
+.coverage
+coverage.xml
+
+# mypy
+.mypy_cache/
+
+# Databases
+*.db
+*.sqlite3
