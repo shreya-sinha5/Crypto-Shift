@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cryptoshift.dev/schemas/audit_record.json",
+  "title": "CryptoShift Audit Record",
+  "description": "Immutable audit record for every decision and outcome.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "finding_id",
+    "action",
+    "actor",
+    "timestamp",
+    "details"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "finding_id": {
+      "type": "string",
+      "pattern": "^f-[0-9]{4,}$"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "scanned",
+        "enriched",
+        "transformed",
+        "verified",
+        "approved",
+        "rejected",
+        "deferred",
+        "pr_opened",
+        "pr_failed",
+        "needs_human"
+      ],
+      "description": "The action that generated this record."
+    },
+    "actor": {
+      "type": "string",
+      "description": "Who or what performed the action (system, reviewer username)."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "details": {
+      "type": "object",
+      "description": "Action-specific details.",
+      "properties": {
+        "template_id": { "type": "string" },
+        "parameters": { "type": "object" },
+        "validator_result": { "type": "string" },
+        "trackA_status": { "type": "string" },
+        "trackB_status": { "type": "string" },
+        "overall_status": { "type": "string" },
+        "pr_url": { "type": "string" },
+        "pr_branch": { "type": "string" },
+        "decision": { "type": "string" },
+        "notes": { "type": "string" },
+        "error": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": false
+}
