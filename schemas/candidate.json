@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cryptoshift.dev/schemas/candidate.json",
+  "title": "CryptoShift Transformation Candidate",
+  "description": "A candidate transformation with template, parameters, patch, and validation.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "finding_id",
+    "template_id",
+    "parameters",
+    "patch",
+    "rationale",
+    "validator_result"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "finding_id": {
+      "type": "string",
+      "pattern": "^f-[0-9]{4,}$"
+    },
+    "template_id": {
+      "type": "string",
+      "description": "ID from the template registry."
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Enum parameter values selected for this template.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "patch": {
+      "type": "string",
+      "description": "Unified diff patch content."
+    },
+    "rationale": {
+      "type": "string",
+      "description": "Human-readable explanation for the template selection."
+    },
+    "llm_trace": {
+      "type": "object",
+      "properties": {
+        "prompt_hash": {
+          "type": "string",
+          "description": "SHA-256 hash of the LLM prompt (secrets excluded)."
+        },
+        "chosen_enums": {
+          "type": "object",
+          "description": "The enum values chosen by the LLM.",
+          "additionalProperties": { "type": "string" }
+        },
+        "retry_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "validator_result": {
+      "type": "object",
+      "required": ["approved", "reason"],
+      "properties": {
+        "approved": {
+          "type": "boolean",
+          "description": "Whether the validator approved this candidate."
+        },
+        "reason": {
+          "type": "string",
+          "description": "Validator decision reason."
+        },
+        "vetoed_parameters": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Parameters that were vetoed, if any."
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["ready", "needs_human", "vetoed"],
+      "default": "ready"
+    }
+  },
+  "additionalProperties": false
+}
