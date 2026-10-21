@@ -1,0 +1,38 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.5.0
+    hooks:
+      - id: ruff
+        args: [--fix]
+
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+      - id: black
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+
+  - repo: local
+    hooks:
+      - id: validate-schemas
+        name: Validate artifact schemas
+        entry: python -m pytest tests/unit/test_schemas.py -x -q
+        language: system
+        pass_filenames: false
+        types: [json]
+        files: ^(schemas/|artifacts/)
+
+      - id: import-boundary-check
+        name: Check control_centre import boundaries
+        entry: python scripts/check_imports.py
+        language: system
+        pass_filenames: false
+        files: ^cryptoshift/control_centre/
