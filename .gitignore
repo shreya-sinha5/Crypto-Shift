@@ -28,10 +28,8 @@ java_helper/target/
 Thumbs.db
 
 # Artifacts (generated, not committed)
-artifacts/scan.json
-artifacts/enriched_cbom.json
-artifacts/candidates/*/
-artifacts/verification_report.json
+artifacts/*
+!artifacts/README.md
 
 # Secrets
 .env

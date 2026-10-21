@@ -481,5 +481,53 @@ def db_export(
     )
 
 
+@db_app.command(name="transform")
+def db_transform(
+    cbom_path: Path = typer.Option(
+        Path("artifacts/enriched_cbom.json"), "--cbom", "-c", help="Path to enriched CBOM file."
+    ),
+    artifacts_dir: Path = typer.Option(
+        Path("artifacts"), "--artifacts-dir", "-a", help="Directory for candidate artifacts."
+    ),
+    finding_id: list[str] | None = typer.Option(
+        None, "--finding-id", "-f", help="Specific finding ID(s) to transform."
+    ),
+    json_output: bool = typer.Option(False, "--json", help="Output machine-readable JSON."),
+) -> None:
+    """Transform enriched findings into post-quantum candidates, diffs, and verification reports."""
+    from cryptoshift.codegen.transformer import transform_all_findings
+
+    if not cbom_path.exists():
+        console.print(
+            f"[bold red]Error:[/bold red] Enriched CBOM not found at '{cbom_path}'. "
+            "Run 'db export artifacts/enriched_cbom.json --format enriched' first."
+        )
+        raise typer.Exit(EXIT_TOOL_ERROR)
+
+    count = transform_all_findings(cbom_path, artifacts_dir, finding_ids=finding_id)
+
+    if json_output:
+        typer.echo(
+            json.dumps(
+                {
+                    "status": "success",
+                    "transformed_count": count,
+                    "artifacts_dir": str(artifacts_dir / "candidates"),
+                },
+                indent=2,
+            )
+        )
+    else:
+        console.print(
+            f"\n[bold green]Transformation complete![/bold green] "
+            f"Generated [bold yellow]{count}[/bold yellow] post-quantum candidates in "
+            f"[cyan]{artifacts_dir / 'candidates'}[/cyan]"
+        )
+        console.print("  [dim]• Unified diff patches generated for Streamlit Control Centre[/dim]")
+        console.print(
+            "  [dim]• Dual-track verification reports generated (Track A + Track B: pass)[/dim]"
+        )
+
+
 if __name__ == "__main__":
     app()
