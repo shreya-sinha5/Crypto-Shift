@@ -1,0 +1,1463 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "CryptoShift Legacy Scanner",
+          "version": "0.1.0",
+          "informationUri": "https://github.com/CryptoShift/CryptoShift",
+          "rules": [
+            {
+              "id": "CS002",
+              "name": "RSA_key_exchange",
+              "shortDescription": {
+                "text": "Legacy RSA (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "RSA PKCS#1 v1.5 encryption \u2014 quantum-vulnerable; migrate to ML-KEM."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "rsa"
+                ],
+                "problem.severity": "error"
+              }
+            },
+            {
+              "id": "CS004",
+              "name": "RSA_signature",
+              "shortDescription": {
+                "text": "Legacy RSA (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "RSA-SHA256 PKCS#1 v1.5 signing \u2014 quantum-vulnerable; migrate to ML-DSA."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "rsa"
+                ],
+                "problem.severity": "error"
+              }
+            },
+            {
+              "id": "CS005",
+              "name": "RSA_signature",
+              "shortDescription": {
+                "text": "Legacy RSA (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "RSA-SHA256 PKCS#1 v1.5 verification \u2014 quantum-vulnerable."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "rsa"
+                ],
+                "problem.severity": "error"
+              }
+            },
+            {
+              "id": "CS006",
+              "name": "RSA_key_exchange",
+              "shortDescription": {
+                "text": "Legacy RSA (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "RSA key generation via EVP \u2014 quantum-vulnerable."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "rsa"
+                ],
+                "problem.severity": "error"
+              }
+            },
+            {
+              "id": "CS007",
+              "name": "RSA_key_exchange",
+              "shortDescription": {
+                "text": "Legacy RSA (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "PKCS#1 v1.5 padding constant \u2014 implies Bleichenbacher-vulnerable RSA."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "rsa"
+                ],
+                "problem.severity": "error"
+              }
+            },
+            {
+              "id": "CS010",
+              "name": "ECDSA_signature",
+              "shortDescription": {
+                "text": "Legacy ECDSA (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "ECDSA P-256 signing \u2014 quantum-vulnerable (Shor's algorithm)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "ecdsa"
+                ],
+                "problem.severity": "error"
+              }
+            },
+            {
+              "id": "CS011",
+              "name": "ECDSA_signature",
+              "shortDescription": {
+                "text": "Legacy ECDSA (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "ECDSA P-256 verification \u2014 quantum-vulnerable."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "ecdsa"
+                ],
+                "problem.severity": "error"
+              }
+            },
+            {
+              "id": "CS012",
+              "name": "ECDH_key_exchange",
+              "shortDescription": {
+                "text": "Legacy ECDH (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "ECDH key agreement \u2014 quantum-vulnerable; migrate to ML-KEM."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "ecdh"
+                ],
+                "problem.severity": "error"
+              }
+            },
+            {
+              "id": "CS013",
+              "name": "ECDSA_key_exchange",
+              "shortDescription": {
+                "text": "Legacy ECDSA (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "EC key creation \u2014 verify the curve is not quantum-vulnerable."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "ecdsa"
+                ],
+                "problem.severity": "warning"
+              }
+            },
+            {
+              "id": "CS020",
+              "name": "DH_key_exchange",
+              "shortDescription": {
+                "text": "Legacy DH (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "Classic DH parameter generation \u2014 quantum-vulnerable."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "dh"
+                ],
+                "problem.severity": "error"
+              }
+            },
+            {
+              "id": "CS021",
+              "name": "DH_key_exchange",
+              "shortDescription": {
+                "text": "Legacy DH (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "Classic DH shared secret \u2014 quantum-vulnerable."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "dh"
+                ],
+                "problem.severity": "error"
+              }
+            },
+            {
+              "id": "CS022",
+              "name": "DH_key_exchange",
+              "shortDescription": {
+                "text": "Legacy DH (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "DH key pair generation \u2014 quantum-vulnerable."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "dh"
+                ],
+                "problem.severity": "error"
+              }
+            },
+            {
+              "id": "CS030",
+              "name": "AES-CBC_symmetric",
+              "shortDescription": {
+                "text": "Legacy AES-CBC (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "AES-CBC low-level encrypt \u2014 not quantum-broken but unauthenticated; prefer AES-GCM or ChaCha20-Poly1305."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "aes-cbc"
+                ],
+                "problem.severity": "warning"
+              }
+            },
+            {
+              "id": "CS031",
+              "name": "AES_symmetric",
+              "shortDescription": {
+                "text": "Legacy AES (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "AES key schedule set \u2014 low-level deprecated API."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "aes"
+                ],
+                "problem.severity": "note"
+              }
+            },
+            {
+              "id": "CS032",
+              "name": "TLS-cipher_symmetric",
+              "shortDescription": {
+                "text": "Legacy TLS-cipher (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "Legacy TLS cipher list \u2014 check for RSA key exchange suites."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "tls-cipher"
+                ],
+                "problem.severity": "warning"
+              }
+            },
+            {
+              "id": "CS040",
+              "name": "MD5_hash",
+              "shortDescription": {
+                "text": "Legacy MD5 (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "MD5 usage \u2014 collision-broken, do not use for security purposes."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "md5"
+                ],
+                "problem.severity": "error"
+              }
+            },
+            {
+              "id": "CS041",
+              "name": "SHA-1_hash",
+              "shortDescription": {
+                "text": "Legacy SHA-1 (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "SHA-1 usage \u2014 deprecated for signatures (SHAttered collision attack)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "sha-1"
+                ],
+                "problem.severity": "error"
+              }
+            },
+            {
+              "id": "CS042",
+              "name": "MD5_hash",
+              "shortDescription": {
+                "text": "Legacy MD5 (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "EVP MD5 digest \u2014 collision-broken."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "md5"
+                ],
+                "problem.severity": "error"
+              }
+            },
+            {
+              "id": "CS043",
+              "name": "SHA-1_hash",
+              "shortDescription": {
+                "text": "Legacy SHA-1 (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "EVP SHA-1 digest \u2014 deprecated for signing; still acceptable in HMAC-SHA1."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "sha-1"
+                ],
+                "problem.severity": "warning"
+              }
+            },
+            {
+              "id": "CS044",
+              "name": "HMAC-MD5_hash",
+              "shortDescription": {
+                "text": "Legacy HMAC-MD5 (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "HMAC-MD5 \u2014 weak; replaced by HMAC-SHA256."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "hmac-md5"
+                ],
+                "problem.severity": "error"
+              }
+            },
+            {
+              "id": "CS045",
+              "name": "HMAC-SHA1_hash",
+              "shortDescription": {
+                "text": "Legacy HMAC-SHA1 (OpenSSL)"
+              },
+              "fullDescription": {
+                "text": "HMAC-SHA1 \u2014 deprecated; replace with HMAC-SHA256."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "precision": "high",
+                "tags": [
+                  "cryptography",
+                  "legacy-crypto",
+                  "post-quantum",
+                  "hmac-sha1"
+                ],
+                "problem.severity": "warning"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CS020",
+          "level": "error",
+          "message": {
+            "text": "Classic DH parameter generation \u2014 quantum-vulnerable. (matched: 'DH_generate_parameters_ex(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/dh_exchange.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 5,
+                  "endColumn": 31,
+                  "snippet": {
+                    "text": "DH_generate_parameters_ex("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "DH",
+            "library": "OpenSSL",
+            "role": "key_exchange",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS022",
+          "level": "error",
+          "message": {
+            "text": "DH key pair generation \u2014 quantum-vulnerable. (matched: 'DH_generate_key(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/dh_exchange.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 41,
+                  "startColumn": 5,
+                  "endColumn": 21,
+                  "snippet": {
+                    "text": "DH_generate_key("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "DH",
+            "library": "OpenSSL",
+            "role": "key_exchange",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS021",
+          "level": "error",
+          "message": {
+            "text": "Classic DH shared secret \u2014 quantum-vulnerable. (matched: 'DH_compute_key(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/dh_exchange.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 61,
+                  "startColumn": 5,
+                  "endColumn": 20,
+                  "snippet": {
+                    "text": "DH_compute_key("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "DH",
+            "library": "OpenSSL",
+            "role": "key_exchange",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS013",
+          "level": "warning",
+          "message": {
+            "text": "EC key creation \u2014 verify the curve is not quantum-vulnerable. (matched: 'EC_KEY_new_by_curve_name(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/dh_exchange.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 78,
+                  "startColumn": 21,
+                  "endColumn": 46,
+                  "snippet": {
+                    "text": "EC_KEY_new_by_curve_name("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "ECDSA",
+            "library": "OpenSSL",
+            "role": "key_exchange",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS012",
+          "level": "error",
+          "message": {
+            "text": "ECDH key agreement \u2014 quantum-vulnerable; migrate to ML-KEM. (matched: 'ECDH_compute_key(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/dh_exchange.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 87,
+                  "startColumn": 5,
+                  "endColumn": 22,
+                  "snippet": {
+                    "text": "ECDH_compute_key("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "ECDH",
+            "library": "OpenSSL",
+            "role": "key_exchange",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS040",
+          "level": "error",
+          "message": {
+            "text": "MD5 usage \u2014 collision-broken, do not use for security purposes. (matched: 'MD5_Init(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/hash_utils.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 30,
+                  "startColumn": 5,
+                  "endColumn": 14,
+                  "snippet": {
+                    "text": "MD5_Init("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "MD5",
+            "library": "OpenSSL",
+            "role": "hash",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS040",
+          "level": "error",
+          "message": {
+            "text": "MD5 usage \u2014 collision-broken, do not use for security purposes. (matched: 'MD5_Update(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/hash_utils.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 5,
+                  "endColumn": 16,
+                  "snippet": {
+                    "text": "MD5_Update("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "MD5",
+            "library": "OpenSSL",
+            "role": "hash",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS040",
+          "level": "error",
+          "message": {
+            "text": "MD5 usage \u2014 collision-broken, do not use for security purposes. (matched: 'MD5_Final(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/hash_utils.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 32,
+                  "startColumn": 5,
+                  "endColumn": 15,
+                  "snippet": {
+                    "text": "MD5_Final("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "MD5",
+            "library": "OpenSSL",
+            "role": "hash",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS041",
+          "level": "error",
+          "message": {
+            "text": "SHA-1 usage \u2014 deprecated for signatures (SHAttered collision attack). (matched: 'SHA1_Init(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/hash_utils.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 40,
+                  "startColumn": 5,
+                  "endColumn": 15,
+                  "snippet": {
+                    "text": "SHA1_Init("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "SHA-1",
+            "library": "OpenSSL",
+            "role": "hash",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS041",
+          "level": "error",
+          "message": {
+            "text": "SHA-1 usage \u2014 deprecated for signatures (SHAttered collision attack). (matched: 'SHA1_Update(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/hash_utils.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 41,
+                  "startColumn": 5,
+                  "endColumn": 17,
+                  "snippet": {
+                    "text": "SHA1_Update("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "SHA-1",
+            "library": "OpenSSL",
+            "role": "hash",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS041",
+          "level": "error",
+          "message": {
+            "text": "SHA-1 usage \u2014 deprecated for signatures (SHAttered collision attack). (matched: 'SHA1_Final(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/hash_utils.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 42,
+                  "startColumn": 5,
+                  "endColumn": 16,
+                  "snippet": {
+                    "text": "SHA1_Final("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "SHA-1",
+            "library": "OpenSSL",
+            "role": "hash",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS043",
+          "level": "warning",
+          "message": {
+            "text": "EVP SHA-1 digest \u2014 deprecated for signing; still acceptable in HMAC-SHA1. (matched: 'EVP_sha1()')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/hash_utils.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 69,
+                  "startColumn": 10,
+                  "endColumn": 20,
+                  "snippet": {
+                    "text": "EVP_sha1()"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "SHA-1",
+            "library": "OpenSSL",
+            "role": "hash",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS045",
+          "level": "warning",
+          "message": {
+            "text": "HMAC-SHA1 \u2014 deprecated; replace with HMAC-SHA256. (matched: 'HMAC(EVP_sha1()')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/hash_utils.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 69,
+                  "startColumn": 5,
+                  "endColumn": 20,
+                  "snippet": {
+                    "text": "HMAC(EVP_sha1()"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "HMAC-SHA1",
+            "library": "OpenSSL",
+            "role": "hash",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS042",
+          "level": "error",
+          "message": {
+            "text": "EVP MD5 digest \u2014 collision-broken. (matched: 'EVP_md5()')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/hash_utils.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 78,
+                  "startColumn": 10,
+                  "endColumn": 19,
+                  "snippet": {
+                    "text": "EVP_md5()"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "MD5",
+            "library": "OpenSSL",
+            "role": "hash",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS044",
+          "level": "error",
+          "message": {
+            "text": "HMAC-MD5 \u2014 weak; replaced by HMAC-SHA256. (matched: 'HMAC(EVP_md5()')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/hash_utils.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 78,
+                  "startColumn": 5,
+                  "endColumn": 19,
+                  "snippet": {
+                    "text": "HMAC(EVP_md5()"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "HMAC-MD5",
+            "library": "OpenSSL",
+            "role": "hash",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS006",
+          "level": "error",
+          "message": {
+            "text": "RSA key generation via EVP \u2014 quantum-vulnerable. (matched: 'EVP_PKEY_CTX_set_rsa_keygen_bits(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/key_service.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 42,
+                  "startColumn": 5,
+                  "endColumn": 38,
+                  "snippet": {
+                    "text": "EVP_PKEY_CTX_set_rsa_keygen_bits("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "RSA",
+            "library": "OpenSSL",
+            "role": "key_exchange",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS007",
+          "level": "error",
+          "message": {
+            "text": "PKCS#1 v1.5 padding constant \u2014 implies Bleichenbacher-vulnerable RSA. (matched: 'RSA_PKCS1_PADDING')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/key_service.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 66,
+                  "startColumn": 16,
+                  "endColumn": 33,
+                  "snippet": {
+                    "text": "RSA_PKCS1_PADDING"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "RSA",
+            "library": "OpenSSL",
+            "role": "key_exchange",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS007",
+          "level": "error",
+          "message": {
+            "text": "PKCS#1 v1.5 padding constant \u2014 implies Bleichenbacher-vulnerable RSA. (matched: 'RSA_PKCS1_PADDING')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/key_service.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 67,
+                  "startColumn": 40,
+                  "endColumn": 57,
+                  "snippet": {
+                    "text": "RSA_PKCS1_PADDING"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "RSA",
+            "library": "OpenSSL",
+            "role": "key_exchange",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS007",
+          "level": "error",
+          "message": {
+            "text": "PKCS#1 v1.5 padding constant \u2014 implies Bleichenbacher-vulnerable RSA. (matched: 'RSA_PKCS1_PADDING')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/key_service.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 80,
+                  "startColumn": 40,
+                  "endColumn": 57,
+                  "snippet": {
+                    "text": "RSA_PKCS1_PADDING"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "RSA",
+            "library": "OpenSSL",
+            "role": "key_exchange",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS013",
+          "level": "warning",
+          "message": {
+            "text": "EC key creation \u2014 verify the curve is not quantum-vulnerable. (matched: 'EC_KEY_new_by_curve_name(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/signature_service.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 39,
+                  "startColumn": 14,
+                  "endColumn": 39,
+                  "snippet": {
+                    "text": "EC_KEY_new_by_curve_name("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "ECDSA",
+            "library": "OpenSSL",
+            "role": "key_exchange",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS010",
+          "level": "error",
+          "message": {
+            "text": "ECDSA P-256 signing \u2014 quantum-vulnerable (Shor's algorithm). (matched: 'ECDSA_do_sign(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/signature_service.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 53,
+                  "startColumn": 23,
+                  "endColumn": 37,
+                  "snippet": {
+                    "text": "ECDSA_do_sign("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "ECDSA",
+            "library": "OpenSSL",
+            "role": "signature",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS011",
+          "level": "error",
+          "message": {
+            "text": "ECDSA P-256 verification \u2014 quantum-vulnerable. (matched: 'ECDSA_do_verify(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/signature_service.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 66,
+                  "startColumn": 15,
+                  "endColumn": 31,
+                  "snippet": {
+                    "text": "ECDSA_do_verify("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "ECDSA",
+            "library": "OpenSSL",
+            "role": "signature",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS004",
+          "level": "error",
+          "message": {
+            "text": "RSA-SHA256 PKCS#1 v1.5 signing \u2014 quantum-vulnerable; migrate to ML-DSA. (matched: 'RSA_sign(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/signature_service.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 89,
+                  "startColumn": 12,
+                  "endColumn": 21,
+                  "snippet": {
+                    "text": "RSA_sign("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "RSA",
+            "library": "OpenSSL",
+            "role": "signature",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS005",
+          "level": "error",
+          "message": {
+            "text": "RSA-SHA256 PKCS#1 v1.5 verification \u2014 quantum-vulnerable. (matched: 'RSA_verify(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/signature_service.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 99,
+                  "startColumn": 12,
+                  "endColumn": 23,
+                  "snippet": {
+                    "text": "RSA_verify("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "RSA",
+            "library": "OpenSSL",
+            "role": "signature",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS032",
+          "level": "warning",
+          "message": {
+            "text": "Legacy TLS cipher list \u2014 check for RSA key exchange suites. (matched: 'SSL_CTX_set_cipher_list(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/tls_session.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 48,
+                  "startColumn": 5,
+                  "endColumn": 29,
+                  "snippet": {
+                    "text": "SSL_CTX_set_cipher_list("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "TLS-cipher",
+            "library": "OpenSSL",
+            "role": "symmetric",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS031",
+          "level": "note",
+          "message": {
+            "text": "AES key schedule set \u2014 low-level deprecated API. (matched: 'AES_set_encrypt_key(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/tls_session.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 58,
+                  "startColumn": 5,
+                  "endColumn": 25,
+                  "snippet": {
+                    "text": "AES_set_encrypt_key("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "AES",
+            "library": "OpenSSL",
+            "role": "symmetric",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS030",
+          "level": "warning",
+          "message": {
+            "text": "AES-CBC low-level encrypt \u2014 not quantum-broken but unauthenticated; prefer AES-GCM or ChaCha20-Poly1305. (matched: 'AES_cbc_encrypt(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/tls_session.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 72,
+                  "startColumn": 5,
+                  "endColumn": 21,
+                  "snippet": {
+                    "text": "AES_cbc_encrypt("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "AES-CBC",
+            "library": "OpenSSL",
+            "role": "symmetric",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS030",
+          "level": "warning",
+          "message": {
+            "text": "AES-CBC low-level encrypt \u2014 not quantum-broken but unauthenticated; prefer AES-GCM or ChaCha20-Poly1305. (matched: 'AES_cbc_encrypt(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/tls_session.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 84,
+                  "startColumn": 5,
+                  "endColumn": 21,
+                  "snippet": {
+                    "text": "AES_cbc_encrypt("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "AES-CBC",
+            "library": "OpenSSL",
+            "role": "symmetric",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS012",
+          "level": "error",
+          "message": {
+            "text": "ECDH key agreement \u2014 quantum-vulnerable; migrate to ML-KEM. (matched: 'ECDH_compute_key(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/tls_session.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 96,
+                  "startColumn": 5,
+                  "endColumn": 22,
+                  "snippet": {
+                    "text": "ECDH_compute_key("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "ECDH",
+            "library": "OpenSSL",
+            "role": "key_exchange",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS002",
+          "level": "error",
+          "message": {
+            "text": "RSA PKCS#1 v1.5 encryption \u2014 quantum-vulnerable; migrate to ML-KEM. (matched: 'RSA_public_encrypt(')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/tls_session.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 105,
+                  "startColumn": 15,
+                  "endColumn": 34,
+                  "snippet": {
+                    "text": "RSA_public_encrypt("
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "RSA",
+            "library": "OpenSSL",
+            "role": "key_exchange",
+            "key_size": null
+          }
+        },
+        {
+          "ruleId": "CS007",
+          "level": "error",
+          "message": {
+            "text": "PKCS#1 v1.5 padding constant \u2014 implies Bleichenbacher-vulnerable RSA. (matched: 'RSA_PKCS1_PADDING')"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/tls_session.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 106,
+                  "startColumn": 43,
+                  "endColumn": 60,
+                  "snippet": {
+                    "text": "RSA_PKCS1_PADDING"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "algorithm": "RSA",
+            "library": "OpenSSL",
+            "role": "key_exchange",
+            "key_size": null
+          }
+        }
+      ]
+    }
+  ]
+}
