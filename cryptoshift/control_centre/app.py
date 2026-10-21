@@ -13,7 +13,6 @@ from typing import Any
 
 import streamlit as st
 
-
 ARTIFACTS_DIR = Path(
     st.sidebar.text_input(
         "Artifacts directory",
@@ -28,7 +27,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
-
 
 
 def load_json(filepath: Path) -> Any:
@@ -77,7 +75,6 @@ page = st.sidebar.radio(
     "Navigate",
     ["📋 Backlog", "🔍 Finding Detail", "📊 Progress"],
 )
-
 
 
 def render_backlog() -> None:
@@ -137,7 +134,6 @@ def render_backlog() -> None:
 
             if st.button(f"View details for {fid}", key=f"detail_{fid}"):
                 st.session_state["selected_finding"] = fid
-
 
 
 def render_finding_detail() -> None:
@@ -239,7 +235,6 @@ def render_finding_detail() -> None:
     st.text_area("Notes", key=f"notes_{finding_id}", placeholder="Reviewer notes...")
 
 
-
 def render_progress() -> None:
     """Render migration progress summary."""
     st.header("📊 Migration Progress")
@@ -304,7 +299,6 @@ def render_progress() -> None:
         st.metric("🟡 Medium Risk", medium)
     with col3:
         st.metric("🟢 Low Risk", low)
-
 
 
 if page == "📋 Backlog":

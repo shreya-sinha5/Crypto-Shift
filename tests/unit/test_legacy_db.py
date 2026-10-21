@@ -15,7 +15,6 @@ from cryptoshift.legacy_db import (
     findings_to_enriched_cbom,
     findings_to_sarif_dict,
     scan_directory,
-    scan_file,
 )
 
 runner = CliRunner()

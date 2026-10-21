@@ -6,14 +6,11 @@ and CycloneDX CBOM integration.
 
 from __future__ import annotations
 
-from pathlib import Path
-from typing import Sequence
-
 from cryptoshift.legacy_db.cbom import (
     findings_to_cyclonedx_cbom,
     findings_to_enriched_cbom,
 )
-from cryptoshift.legacy_db.db import CryptoDatabase, DEFAULT_DB_PATH
+from cryptoshift.legacy_db.db import DEFAULT_DB_PATH, CryptoDatabase
 from cryptoshift.legacy_db.sarif import (
     findings_to_sarif_dict,
     read_sarif_file,

@@ -7,12 +7,15 @@ ingestion format.
 from __future__ import annotations
 
 import json
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Any, Sequence
+from typing import Any
 
 from cryptoshift.parsers.c import PATTERNS, CryptoFinding, CryptoPattern
 
-SARIF_SCHEMA = "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json"
+SARIF_SCHEMA = (
+    "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json"
+)
 TOOL_NAME = "CryptoShift Legacy Scanner"
 TOOL_VERSION = "0.1.0"
 
@@ -35,24 +38,25 @@ def findings_to_sarif_dict(
     for rule_id in sorted(used_rule_ids):
         pattern = rule_map.get(rule_id)
         if pattern:
-            rules.append({
-                "id": pattern.rule_id,
-                "name": f"{pattern.algorithm}_{pattern.role}".replace(" ", "_"),
-                "shortDescription": {
-                    "text": f"Legacy {pattern.algorithm} ({pattern.library})"
-                },
-                "fullDescription": {
-                    "text": pattern.message
-                },
-                "defaultConfiguration": {
-                    "level": pattern.severity
-                },
-                "properties": {
-                    "precision": "high",
-                    "tags": ["cryptography", "legacy-crypto", "post-quantum", pattern.algorithm.lower()],
-                    "problem.severity": pattern.severity,
-                },
-            })
+            rules.append(
+                {
+                    "id": pattern.rule_id,
+                    "name": f"{pattern.algorithm}_{pattern.role}".replace(" ", "_"),
+                    "shortDescription": {"text": f"Legacy {pattern.algorithm} ({pattern.library})"},
+                    "fullDescription": {"text": pattern.message},
+                    "defaultConfiguration": {"level": pattern.severity},
+                    "properties": {
+                        "precision": "high",
+                        "tags": [
+                            "cryptography",
+                            "legacy-crypto",
+                            "post-quantum",
+                            pattern.algorithm.lower(),
+                        ],
+                        "problem.severity": pattern.severity,
+                    },
+                }
+            )
 
     results = []
     for f in findings:
@@ -65,37 +69,37 @@ def findings_to_sarif_dict(
         # Normalize path separators for SARIF URI
         file_uri = file_path.replace("\\", "/")
 
-        results.append({
-            "ruleId": f.rule_id,
-            "level": f.severity,
-            "message": {
-                "text": f"{f.message} (matched: '{f.matched_text}')"
-            },
-            "locations": [
-                {
-                    "physicalLocation": {
-                        "artifactLocation": {
-                            "uri": file_uri,
-                            "uriBaseId": "%SRCROOT%",
-                        },
-                        "region": {
-                            "startLine": f.line,
-                            "startColumn": f.col_start,
-                            "endColumn": f.col_end,
-                            "snippet": {
-                                "text": f.matched_text,
+        results.append(
+            {
+                "ruleId": f.rule_id,
+                "level": f.severity,
+                "message": {"text": f"{f.message} (matched: '{f.matched_text}')"},
+                "locations": [
+                    {
+                        "physicalLocation": {
+                            "artifactLocation": {
+                                "uri": file_uri,
+                                "uriBaseId": "%SRCROOT%",
                             },
-                        },
+                            "region": {
+                                "startLine": f.line,
+                                "startColumn": f.col_start,
+                                "endColumn": f.col_end,
+                                "snippet": {
+                                    "text": f.matched_text,
+                                },
+                            },
+                        }
                     }
-                }
-            ],
-            "properties": {
-                "algorithm": f.algorithm,
-                "library": f.library,
-                "role": f.role,
-                "key_size": f.key_size,
-            },
-        })
+                ],
+                "properties": {
+                    "algorithm": f.algorithm,
+                    "library": f.library,
+                    "role": f.role,
+                    "key_size": f.key_size,
+                },
+            }
+        )
 
     return {
         "$schema": SARIF_SCHEMA,
@@ -147,18 +151,20 @@ def read_sarif_file(path: Path) -> list[dict[str, Any]]:
                 phys = loc.get("physicalLocation", {})
                 art = phys.get("artifactLocation", {})
                 region = phys.get("region", {})
-                findings.append({
-                    "rule_id": rule_id,
-                    "severity": level,
-                    "message": message,
-                    "file": art.get("uri", ""),
-                    "line": region.get("startLine", 0),
-                    "col_start": region.get("startColumn", 0),
-                    "col_end": region.get("endColumn", 0),
-                    "matched_text": region.get("snippet", {}).get("text", ""),
-                    "algorithm": props.get("algorithm", "unknown"),
-                    "library": props.get("library", "unknown"),
-                    "role": props.get("role", "unknown"),
-                    "key_size": props.get("key_size"),
-                })
+                findings.append(
+                    {
+                        "rule_id": rule_id,
+                        "severity": level,
+                        "message": message,
+                        "file": art.get("uri", ""),
+                        "line": region.get("startLine", 0),
+                        "col_start": region.get("startColumn", 0),
+                        "col_end": region.get("endColumn", 0),
+                        "matched_text": region.get("snippet", {}).get("text", ""),
+                        "algorithm": props.get("algorithm", "unknown"),
+                        "library": props.get("library", "unknown"),
+                        "role": props.get("role", "unknown"),
+                        "key_size": props.get("key_size"),
+                    }
+                )
     return findings

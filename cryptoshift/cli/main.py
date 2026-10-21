@@ -62,9 +62,6 @@ def main(
         raise typer.Exit(EXIT_SUCCESS)
 
 
-
-
-
 @app.command()
 def scan(
     cbom: Path | None = typer.Option(
@@ -98,9 +95,6 @@ def scan(
     raise typer.Exit(EXIT_TOOL_ERROR)
 
 
-
-
-
 @app.command()
 def enrich(
     scan_file: Path | None = typer.Option(
@@ -127,9 +121,6 @@ def enrich(
     }
     _output(result, json_output)
     raise typer.Exit(EXIT_TOOL_ERROR)
-
-
-
 
 
 @app.command()
@@ -160,9 +151,6 @@ def transform(
     raise typer.Exit(EXIT_TOOL_ERROR)
 
 
-
-
-
 @app.command()
 def verify(
     finding_ids: str | None = typer.Option(
@@ -189,9 +177,6 @@ def verify(
     }
     _output(result, json_output)
     raise typer.Exit(EXIT_TOOL_ERROR)
-
-
-
 
 
 @app.command()
@@ -240,9 +225,7 @@ def db_scan(
         Path("demo/legacy_code"),
         help="Directory or file containing legacy C/C++ code to scan.",
     ),
-    repo_name: str = typer.Option(
-        "legacy-code", "--repo", "-r", help="Repository identifier."
-    ),
+    repo_name: str = typer.Option("legacy-code", "--repo", "-r", help="Repository identifier."),
     db_path: Path = typer.Option(
         Path("legacy_crypto.db"), "--db", help="Path to SQLite database file."
     ),
@@ -256,12 +239,13 @@ def db_scan(
 ) -> None:
     """Scan legacy C/C++ codebase and store findings in the SQLite legacy database."""
     from rich.table import Table
+
     from cryptoshift.legacy_db import (
         CryptoDatabase,
+        findings_to_cyclonedx_cbom,
         scan_directory,
         scan_file,
         write_sarif_file,
-        findings_to_cyclonedx_cbom,
     )
 
     if not target.exists():
@@ -291,18 +275,26 @@ def db_scan(
     summary = db.get_summary(repo_name)
 
     if json_output:
-        typer.echo(json.dumps({
-            "status": "success",
-            "repo": repo_name,
-            "target": str(target),
-            "findings_count": count,
-            "db_path": str(db_path),
-            "sarif_output": str(sarif_out) if sarif_out else None,
-            "cbom_output": str(cbom_out) if cbom_out else None,
-            "summary": summary,
-        }, indent=2))
+        typer.echo(
+            json.dumps(
+                {
+                    "status": "success",
+                    "repo": repo_name,
+                    "target": str(target),
+                    "findings_count": count,
+                    "db_path": str(db_path),
+                    "sarif_output": str(sarif_out) if sarif_out else None,
+                    "cbom_output": str(cbom_out) if cbom_out else None,
+                    "summary": summary,
+                },
+                indent=2,
+            )
+        )
     else:
-        console.print(f"\n[bold green]Scan complete![/bold green] Found [bold yellow]{count}[/bold yellow] legacy cryptographic usages.")
+        console.print(
+            "\n[bold green]Scan complete![/bold green] "
+            f"Found [bold yellow]{count}[/bold yellow] legacy cryptographic usages."
+        )
         console.print(f"  [cyan]Database:[/cyan] {db_path}")
         if sarif_out:
             console.print(f"  [cyan]SARIF Report:[/cyan] {sarif_out}")
@@ -324,13 +316,16 @@ def db_list(
     ),
     repo_name: str | None = typer.Option(None, "--repo", "-r", help="Filter by repo name."),
     algorithm: str | None = typer.Option(None, "--algo", "-a", help="Filter by algorithm."),
-    severity: str | None = typer.Option(None, "--severity", help="Filter by severity (error, warning, note)."),
+    severity: str | None = typer.Option(
+        None, "--severity", help="Filter by severity (error, warning, note)."
+    ),
     role: str | None = typer.Option(None, "--role", help="Filter by cryptographic role."),
     status: str | None = typer.Option(None, "--status", help="Filter by status."),
     json_output: bool = typer.Option(False, "--json", help="Output machine-readable JSON."),
 ) -> None:
     """List findings from the legacy code database with optional filters."""
     from rich.table import Table
+
     from cryptoshift.legacy_db import CryptoDatabase
 
     if not db_path.exists():
@@ -360,7 +355,11 @@ def db_list(
     table.add_column("Matched Code")
 
     for f in findings:
-        sev_color = "red" if f["severity"] == "error" else ("yellow" if f["severity"] == "warning" else "blue")
+        sev_color = (
+            "red"
+            if f["severity"] == "error"
+            else ("yellow" if f["severity"] == "warning" else "blue")
+        )
         table.add_row(
             str(f["id"]),
             f"{f['file_path']}:{f['line_number']}",
@@ -384,6 +383,7 @@ def db_summary(
 ) -> None:
     """Show aggregated statistics from the legacy code database."""
     from rich.table import Table
+
     from cryptoshift.legacy_db import CryptoDatabase
 
     if not db_path.exists():
@@ -418,17 +418,21 @@ def db_summary(
 @db_app.command(name="export")
 def db_export(
     output: Path = typer.Argument(Path("legacy_findings.sarif"), help="Output file path."),
-    format: str = typer.Option("sarif", "--format", "-f", help="Export format: sarif | cbom | enriched"),
-    db_path: Path = typer.Option(Path("legacy_crypto.db"), "--db", help="Path to SQLite database file."),
+    format: str = typer.Option(
+        "sarif", "--format", "-f", help="Export format: sarif | cbom | enriched"
+    ),
+    db_path: Path = typer.Option(
+        Path("legacy_crypto.db"), "--db", help="Path to SQLite database file."
+    ),
     repo_name: str | None = typer.Option(None, "--repo", "-r", help="Repository to export."),
 ) -> None:
     """Export legacy database findings to SARIF 2.1.0, CycloneDX CBOM, or Enriched CBOM format."""
     from cryptoshift.legacy_db import (
         CryptoDatabase,
         CryptoFinding,
-        findings_to_sarif_dict,
         findings_to_cyclonedx_cbom,
         findings_to_enriched_cbom,
+        findings_to_sarif_dict,
     )
 
     if not db_path.exists():
@@ -464,12 +468,17 @@ def db_export(
     elif fmt == "enriched":
         data = findings_to_enriched_cbom(findings)
     else:
-        console.print(f"[bold red]Error:[/bold red] Unsupported format '{format}'. Use 'sarif', 'cbom', or 'enriched'.")
+        console.print(
+            f"[bold red]Error:[/bold red] Unsupported format '{format}'. "
+            "Use 'sarif', 'cbom', or 'enriched'."
+        )
         raise typer.Exit(EXIT_TOOL_ERROR)
 
     with output.open("w", encoding="utf-8") as fp:
         json.dump(data, fp, indent=2)
-    console.print(f"[bold green]Exported {len(findings)} findings to {output} (format: {fmt})[/bold green]")
+    console.print(
+        f"[bold green]Exported {len(findings)} findings to {output} (format: {fmt})[/bold green]"
+    )
 
 
 if __name__ == "__main__":

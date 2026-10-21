@@ -6,9 +6,9 @@ CBOM ingestion and enrichment schemas.
 
 from __future__ import annotations
 
-import json
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Any, Sequence
+from typing import Any
 
 from cryptoshift.parsers.c import CryptoFinding
 
@@ -58,7 +58,11 @@ def findings_to_enriched_cbom(
             "ast_node": f"{f.library}:{f.matched_text}",
             "algorithm": f.algorithm,
             "key_size": f.key_size,
-            "role": f.role if f.role in {"key_exchange", "signature", "symmetric", "hash", "unknown"} else "unknown",
+            "role": (
+                f.role
+                if f.role in {"key_exchange", "signature", "symmetric", "hash", "unknown"}
+                else "unknown"
+            ),
             "role_confidence": 0.95,
             "call_context": [f"{f.library}::{f.matched_text}"],
             "indirect_usage": False,
@@ -92,30 +96,32 @@ def findings_to_cyclonedx_cbom(
                 file_path = f.file
         file_path = file_path.replace("\\", "/")
 
-        components.append({
-            "type": "cryptographic-asset",
-            "bom-ref": f"urn:cdx:crypto:{f.library.lower()}:{f.algorithm.lower()}:{idx}",
-            "name": f.algorithm,
-            "version": f.library,
-            "description": f.message,
-            "evidence": {
-                "occurrences": [
-                    {
-                        "location": file_path,
-                        "line": f.line,
-                        "offset": f.col_start,
-                    }
-                ]
-            },
-            "cryptoProperties": {
-                "assetType": "algorithm",
-                "algorithmProperties": {
-                    "primitive": f.role,
-                    "parameterSetIdentifier": str(f.key_size) if f.key_size else None,
-                    "executionEnvironment": "native-c",
+        components.append(
+            {
+                "type": "cryptographic-asset",
+                "bom-ref": f"urn:cdx:crypto:{f.library.lower()}:{f.algorithm.lower()}:{idx}",
+                "name": f.algorithm,
+                "version": f.library,
+                "description": f.message,
+                "evidence": {
+                    "occurrences": [
+                        {
+                            "location": file_path,
+                            "line": f.line,
+                            "offset": f.col_start,
+                        }
+                    ]
                 },
-            },
-        })
+                "cryptoProperties": {
+                    "assetType": "algorithm",
+                    "algorithmProperties": {
+                        "primitive": f.role,
+                        "parameterSetIdentifier": str(f.key_size) if f.key_size else None,
+                        "executionEnvironment": "native-c",
+                    },
+                },
+            }
+        )
 
     return {
         "bomFormat": "CycloneDX",

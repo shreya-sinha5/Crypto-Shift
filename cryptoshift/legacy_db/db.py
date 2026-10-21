@@ -8,8 +8,9 @@ from __future__ import annotations
 
 import datetime
 import sqlite3
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Any, Sequence
+from typing import Any
 
 from cryptoshift.parsers.c import CryptoFinding
 
@@ -111,7 +112,8 @@ class CryptoDatabase:
                 cursor.execute("DELETE FROM findings WHERE repo_id = ?", (repo_id,))
             else:
                 cursor.execute(
-                    "INSERT INTO repositories (name, url, commit_hash, scanned_at) VALUES (?, ?, ?, ?)",
+                    "INSERT INTO repositories (name, url, commit_hash, scanned_at) "
+                    "VALUES (?, ?, ?, ?)",
                     (repo_name, repo_url, commit_hash, now),
                 )
                 repo_id = cursor.lastrowid
@@ -127,23 +129,25 @@ class CryptoDatabase:
                         file_path = f.file
                 file_path = file_path.replace("\\", "/")
 
-                rows_to_insert.append((
-                    repo_id,
-                    file_path,
-                    f.line,
-                    f.col_start,
-                    f.col_end,
-                    f.rule_id,
-                    f.algorithm,
-                    f.library,
-                    f.role,
-                    f.severity,
-                    f.key_size,
-                    f.message,
-                    f.matched_text,
-                    "detected",
-                    now,
-                ))
+                rows_to_insert.append(
+                    (
+                        repo_id,
+                        file_path,
+                        f.line,
+                        f.col_start,
+                        f.col_end,
+                        f.rule_id,
+                        f.algorithm,
+                        f.library,
+                        f.role,
+                        f.severity,
+                        f.key_size,
+                        f.message,
+                        f.matched_text,
+                        "detected",
+                        now,
+                    )
+                )
 
             cursor.executemany(
                 """

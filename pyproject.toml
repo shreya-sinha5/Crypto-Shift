@@ -64,7 +64,7 @@ select = [
     "UP",  # pyupgrade
     "S",   # flake8-bandit (security)
 ]
-ignore = ["S101", "B008"]  # allow assert in tests, allow typer.Option in parameter defaults
+ignore = ["S101", "B008", "S608"]  # allow assert in tests, allow typer.Option, allow internal SQL assembly
 
 [tool.black]
 line-length = 100
