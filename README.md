@@ -82,7 +82,7 @@ Three GitHub Actions workflows:
 | `cryptoshift-scan.yml` | push, PR, nightly, manual | Scan + enrich + artifact upload |
 | `cryptoshift-apply.yml` | manual, decision file push | Transform + verify + PR creation |
 
-See [ci-setup.md](ci-setup.md) for adoption instructions.
+See [docs/ci-setup.md](docs/ci-setup.md) for adoption instructions.
 
 ## Project Structure
 
@@ -109,12 +109,19 @@ docs/                  # PRD, Architecture, rules, phases, memory
 
 ## Documentation
 
-- [PRD](PRD.md) — Product Requirements Document
-- [Architecture](Architecture.md) — System design and data contracts
-- [Rules](rules.md) — Hard constraints for AI and contributors
-- [Phases](phases.md) — Project phases and cut order
-- [Memory](memory.md) — Living project context
-- [CI Setup](ci-setup.md) — GitHub Actions adoption guide
+- [PRD](docs/PRD.md) — Product Requirements Document
+- [Architecture](docs/Architecture.md) — System design and data contracts
+- [Rules](docs/rules.md) — Hard constraints for AI and contributors
+- [Phases](docs/phases.md) — Project phases and cut order
+- [Memory](docs/memory.md) — Living project context
+- [CI Setup](docs/ci-setup.md) — GitHub Actions adoption guide
+
+## Team
+
+| Role | Members |
+|---|---|
+| Team | Shreya Sinha, Ritika Tiwari, Palak Agarwal, Rachana S |
+| Guide | K M Aishwarya, Assistant Professor, NIE Mysuru |
 
 ## Known Limitations
 
