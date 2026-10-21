@@ -1,0 +1,767 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:cryptoshift-legacy-code",
+  "version": 1,
+  "metadata": {
+    "component": {
+      "type": "application",
+      "name": "legacy-code"
+    },
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "name": "CryptoShift Legacy Scanner",
+          "version": "0.1.0"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:dh:1",
+      "name": "DH",
+      "version": "OpenSSL",
+      "description": "Classic DH parameter generation \u2014 quantum-vulnerable.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/dh_exchange.c",
+            "line": 38,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key_exchange",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:dh:2",
+      "name": "DH",
+      "version": "OpenSSL",
+      "description": "DH key pair generation \u2014 quantum-vulnerable.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/dh_exchange.c",
+            "line": 41,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key_exchange",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:dh:3",
+      "name": "DH",
+      "version": "OpenSSL",
+      "description": "Classic DH shared secret \u2014 quantum-vulnerable.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/dh_exchange.c",
+            "line": 61,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key_exchange",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:ecdsa:4",
+      "name": "ECDSA",
+      "version": "OpenSSL",
+      "description": "EC key creation \u2014 verify the curve is not quantum-vulnerable.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/dh_exchange.c",
+            "line": 78,
+            "offset": 21
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key_exchange",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:ecdh:5",
+      "name": "ECDH",
+      "version": "OpenSSL",
+      "description": "ECDH key agreement \u2014 quantum-vulnerable; migrate to ML-KEM.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/dh_exchange.c",
+            "line": 87,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key_exchange",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:md5:6",
+      "name": "MD5",
+      "version": "OpenSSL",
+      "description": "MD5 usage \u2014 collision-broken, do not use for security purposes.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/hash_utils.c",
+            "line": 30,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:md5:7",
+      "name": "MD5",
+      "version": "OpenSSL",
+      "description": "MD5 usage \u2014 collision-broken, do not use for security purposes.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/hash_utils.c",
+            "line": 31,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:md5:8",
+      "name": "MD5",
+      "version": "OpenSSL",
+      "description": "MD5 usage \u2014 collision-broken, do not use for security purposes.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/hash_utils.c",
+            "line": 32,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:sha-1:9",
+      "name": "SHA-1",
+      "version": "OpenSSL",
+      "description": "SHA-1 usage \u2014 deprecated for signatures (SHAttered collision attack).",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/hash_utils.c",
+            "line": 40,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:sha-1:10",
+      "name": "SHA-1",
+      "version": "OpenSSL",
+      "description": "SHA-1 usage \u2014 deprecated for signatures (SHAttered collision attack).",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/hash_utils.c",
+            "line": 41,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:sha-1:11",
+      "name": "SHA-1",
+      "version": "OpenSSL",
+      "description": "SHA-1 usage \u2014 deprecated for signatures (SHAttered collision attack).",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/hash_utils.c",
+            "line": 42,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:sha-1:12",
+      "name": "SHA-1",
+      "version": "OpenSSL",
+      "description": "EVP SHA-1 digest \u2014 deprecated for signing; still acceptable in HMAC-SHA1.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/hash_utils.c",
+            "line": 69,
+            "offset": 10
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:hmac-sha1:13",
+      "name": "HMAC-SHA1",
+      "version": "OpenSSL",
+      "description": "HMAC-SHA1 \u2014 deprecated; replace with HMAC-SHA256.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/hash_utils.c",
+            "line": 69,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:md5:14",
+      "name": "MD5",
+      "version": "OpenSSL",
+      "description": "EVP MD5 digest \u2014 collision-broken.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/hash_utils.c",
+            "line": 78,
+            "offset": 10
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:hmac-md5:15",
+      "name": "HMAC-MD5",
+      "version": "OpenSSL",
+      "description": "HMAC-MD5 \u2014 weak; replaced by HMAC-SHA256.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/hash_utils.c",
+            "line": 78,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:rsa:16",
+      "name": "RSA",
+      "version": "OpenSSL",
+      "description": "RSA key generation via EVP \u2014 quantum-vulnerable.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/key_service.c",
+            "line": 42,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key_exchange",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:rsa:17",
+      "name": "RSA",
+      "version": "OpenSSL",
+      "description": "PKCS#1 v1.5 padding constant \u2014 implies Bleichenbacher-vulnerable RSA.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/key_service.c",
+            "line": 66,
+            "offset": 16
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key_exchange",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:rsa:18",
+      "name": "RSA",
+      "version": "OpenSSL",
+      "description": "PKCS#1 v1.5 padding constant \u2014 implies Bleichenbacher-vulnerable RSA.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/key_service.c",
+            "line": 67,
+            "offset": 40
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key_exchange",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:rsa:19",
+      "name": "RSA",
+      "version": "OpenSSL",
+      "description": "PKCS#1 v1.5 padding constant \u2014 implies Bleichenbacher-vulnerable RSA.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/key_service.c",
+            "line": 80,
+            "offset": 40
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key_exchange",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:ecdsa:20",
+      "name": "ECDSA",
+      "version": "OpenSSL",
+      "description": "EC key creation \u2014 verify the curve is not quantum-vulnerable.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/signature_service.c",
+            "line": 39,
+            "offset": 14
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key_exchange",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:ecdsa:21",
+      "name": "ECDSA",
+      "version": "OpenSSL",
+      "description": "ECDSA P-256 signing \u2014 quantum-vulnerable (Shor's algorithm).",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/signature_service.c",
+            "line": 53,
+            "offset": 23
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:ecdsa:22",
+      "name": "ECDSA",
+      "version": "OpenSSL",
+      "description": "ECDSA P-256 verification \u2014 quantum-vulnerable.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/signature_service.c",
+            "line": 66,
+            "offset": 15
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:rsa:23",
+      "name": "RSA",
+      "version": "OpenSSL",
+      "description": "RSA-SHA256 PKCS#1 v1.5 signing \u2014 quantum-vulnerable; migrate to ML-DSA.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/signature_service.c",
+            "line": 89,
+            "offset": 12
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:rsa:24",
+      "name": "RSA",
+      "version": "OpenSSL",
+      "description": "RSA-SHA256 PKCS#1 v1.5 verification \u2014 quantum-vulnerable.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/signature_service.c",
+            "line": 99,
+            "offset": 12
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:tls-cipher:25",
+      "name": "TLS-cipher",
+      "version": "OpenSSL",
+      "description": "Legacy TLS cipher list \u2014 check for RSA key exchange suites.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/tls_session.c",
+            "line": 48,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:aes:26",
+      "name": "AES",
+      "version": "OpenSSL",
+      "description": "AES key schedule set \u2014 low-level deprecated API.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/tls_session.c",
+            "line": 58,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:aes-cbc:27",
+      "name": "AES-CBC",
+      "version": "OpenSSL",
+      "description": "AES-CBC low-level encrypt \u2014 not quantum-broken but unauthenticated; prefer AES-GCM or ChaCha20-Poly1305.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/tls_session.c",
+            "line": 72,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:aes-cbc:28",
+      "name": "AES-CBC",
+      "version": "OpenSSL",
+      "description": "AES-CBC low-level encrypt \u2014 not quantum-broken but unauthenticated; prefer AES-GCM or ChaCha20-Poly1305.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/tls_session.c",
+            "line": 84,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:ecdh:29",
+      "name": "ECDH",
+      "version": "OpenSSL",
+      "description": "ECDH key agreement \u2014 quantum-vulnerable; migrate to ML-KEM.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/tls_session.c",
+            "line": 96,
+            "offset": 5
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key_exchange",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:rsa:30",
+      "name": "RSA",
+      "version": "OpenSSL",
+      "description": "RSA PKCS#1 v1.5 encryption \u2014 quantum-vulnerable; migrate to ML-KEM.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/tls_session.c",
+            "line": 105,
+            "offset": 15
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key_exchange",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "urn:cdx:crypto:openssl:rsa:31",
+      "name": "RSA",
+      "version": "OpenSSL",
+      "description": "PKCS#1 v1.5 padding constant \u2014 implies Bleichenbacher-vulnerable RSA.",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "src/tls_session.c",
+            "line": 106,
+            "offset": 43
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key_exchange",
+          "parameterSetIdentifier": null,
+          "executionEnvironment": "native-c"
+        }
+      }
+    }
+  ]
+}
