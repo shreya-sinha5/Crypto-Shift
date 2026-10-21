@@ -1,0 +1,127 @@
+# CryptoShift Reusable Composite Action
+# Wraps the CLI so other repos can adopt CryptoShift with a few lines.
+# See docs/ci-setup.md for usage instructions.
+#
+# Roadmap: GitLab CI component, Jenkins shared library
+
+name: "CryptoShift"
+description: "Run CryptoShift post-quantum migration scan and enrichment"
+author: "CryptoShift Team"
+
+branding:
+  icon: "shield"
+  color: "blue"
+
+inputs:
+  command:
+    description: "CryptoShift command to run (scan, enrich, transform, verify, pr)"
+    required: true
+  cbom-path:
+    description: "Path to CycloneDX CBOM JSON file"
+    required: false
+    default: ""
+  repo-path:
+    description: "Path to target Java repository"
+    required: false
+    default: "."
+  artifacts-dir:
+    description: "Directory for CryptoShift artifacts"
+    required: false
+    default: "artifacts"
+  finding-ids:
+    description: "Comma-separated finding IDs (for transform/verify/pr)"
+    required: false
+    default: ""
+  config:
+    description: "Path to CryptoShift config file"
+    required: false
+    default: ""
+  dry-run:
+    description: "Run in dry-run mode"
+    required: false
+    default: "false"
+  python-version:
+    description: "Python version to use"
+    required: false
+    default: "3.10"
+  java-version:
+    description: "JDK version to use"
+    required: false
+    default: "17"
+
+outputs:
+  exit-code:
+    description: "CryptoShift CLI exit code"
+    value: ${{ steps.run.outputs.exit_code }}
+  artifacts-dir:
+    description: "Path to artifacts directory"
+    value: ${{ inputs.artifacts-dir }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5.6.0
+      with:
+        python-version: ${{ inputs.python-version }}
+        cache: pip
+
+    - name: Set up JDK
+      uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00  # v4.7.1
+      with:
+        java-version: ${{ inputs.java-version }}
+        distribution: temurin
+        cache: maven
+
+    - name: Install CryptoShift
+      shell: bash
+      run: pip install -e ".[dev]"
+
+    - name: Build Java helper
+      shell: bash
+      run: |
+        if [ -d "java_helper" ]; then
+          cd java_helper && mvn clean compile -q
+        fi
+
+    - name: Run CryptoShift
+      id: run
+      shell: bash
+      run: |
+        CMD="cryptoshift ${{ inputs.command }}"
+
+        # Add optional flags
+        if [ -n "${{ inputs.cbom-path }}" ]; then
+          CMD="$CMD --cbom ${{ inputs.cbom-path }}"
+        fi
+        if [ -n "${{ inputs.finding-ids }}" ]; then
+          CMD="$CMD --finding-ids ${{ inputs.finding-ids }}"
+        fi
+        if [ -n "${{ inputs.config }}" ]; then
+          CMD="$CMD --config ${{ inputs.config }}"
+        fi
+        if [ "${{ inputs.dry-run }}" = "true" ]; then
+          CMD="$CMD --dry-run"
+        fi
+
+        CMD="$CMD --artifacts-dir ${{ inputs.artifacts-dir }} --json"
+
+        echo "Running: $CMD"
+        set +e
+        eval $CMD
+        EXIT_CODE=$?
+        set -e
+
+        echo "exit_code=$EXIT_CODE" >> $GITHUB_OUTPUT
+
+        # Map exit codes to annotations
+        case $EXIT_CODE in
+          0) echo "✅ Command succeeded" ;;
+          1) echo "::warning::Tool/config error (exit code 1)" ;;
+          2) echo "::error::Verification failed (exit code 2)" ;;
+          3) echo "::warning::Findings need human input (exit code 3)" ;;
+          4) echo "::warning::Approval missing/denied (exit code 4)" ;;
+          *) echo "::error::Unknown exit code: $EXIT_CODE" ;;
+        esac
+
+        exit $EXIT_CODE
