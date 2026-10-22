@@ -9,6 +9,8 @@ from __future__ import annotations
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+import subprocess
+import sys
 from typing import Any
 
 import streamlit as st
@@ -73,7 +75,7 @@ reviewer_name = st.sidebar.text_input("Reviewer name", value="reviewer")
 
 page = st.sidebar.radio(
     "Navigate",
-    ["📋 Backlog", "🔍 Finding Detail", "📊 Progress"],
+    ["📋 Backlog", "🔍 Finding Detail", "📊 Progress", "⚡ Live Code Transformer"],
 )
 
 
@@ -301,9 +303,125 @@ def render_progress() -> None:
         st.metric("🟢 Low Risk", low)
 
 
+def render_live_transformer() -> None:
+    """Render live legacy-to-quantum code transformation interface."""
+    st.header("⚡ Live Post-Quantum Code Transformer")
+    st.markdown(
+        "Convert legacy, quantum-vulnerable C code to **NIST Post-Quantum Cryptography** "
+        "(FIPS 203 ML-KEM, FIPS 204 ML-DSA, FIPS 202 SHA-3, RFC 9370 Hybrid KEM) live."
+    )
+
+    demo_dir = Path("demo/legacy_code/src")
+    legacy_files = sorted(list(demo_dir.glob("*.c"))) if demo_dir.exists() else []
+    file_options = ["Custom Code / Paste C"] + [f.name for f in legacy_files]
+
+    selected_option = st.selectbox(
+        "Select Legacy Code Source",
+        file_options,
+        index=1 if len(file_options) > 1 else 0,
+        help="Choose a curated benchmark file or select Custom Code to paste your own C code.",
+    )
+
+    default_code = ""
+    default_filename = "dh_exchange.c" if len(file_options) > 1 else "code.c"
+    if selected_option != "Custom Code / Paste C":
+        file_path = demo_dir / selected_option
+        default_filename = selected_option
+        if file_path.exists():
+            default_code = file_path.read_text(encoding="utf-8")
+
+    col_input1, col_input2 = st.columns([3, 1])
+    with col_input1:
+        target_filename = st.text_input("Source File Name", value=default_filename)
+    with col_input2:
+        out_name = f"{Path(target_filename).stem}.quantum.c"
+        out_filename = st.text_input("Output File Name", value=out_name)
+
+    legacy_code_input = st.text_area(
+        "Legacy C Source Code",
+        value=default_code,
+        height=320,
+        help="Edit or inspect the legacy C code before transforming.",
+    )
+
+    if st.button("🚀 Transform to Quantum Code Live", type="primary"):
+        if not legacy_code_input.strip():
+            st.error("Please provide legacy C code to transform.")
+            return
+
+        with st.spinner("Executing NIST Post-Quantum transformation engine..."):
+            out_dir = Path("out")
+            out_dir.mkdir(parents=True, exist_ok=True)
+            scratch_src = out_dir / f"_temp_{target_filename}"
+            scratch_src.write_text(legacy_code_input, encoding="utf-8")
+
+            dest_file = out_dir / out_filename
+
+            cmd = [
+                sys.executable,
+                "-m",
+                "cryptoshift.cli.main",
+                "db",
+                "transform-file",
+                str(scratch_src),
+                "--out",
+                str(dest_file),
+                "--json",
+            ]
+            try:
+                proc = subprocess.run(cmd, capture_output=True, text=True, check=True)
+                res = json.loads(proc.stdout)
+            except Exception as e:
+                st.error(f"Transformation error: {e}")
+                return
+            finally:
+                if scratch_src.exists():
+                    try:
+                        scratch_src.unlink()
+                    except Exception:
+                        pass
+
+            quantum_code = res.get("quantum_code", "")
+            diff_text = res.get("diff", "")
+            transformations = res.get("transformations", [])
+            pqc_standards = res.get("pqc_standards", [])
+
+            st.success(f"✅ Transformed quantum code successfully written to `{dest_file}`!")
+
+            st.markdown("### Applied Modernizations")
+            badges = " ".join([f"`{std}`" for std in pqc_standards])
+            if badges:
+                st.markdown(f"**Standards Applied:** {badges}")
+            for t in transformations:
+                st.markdown(f"- 🛡️ {t}")
+
+            st.markdown("### Side-by-Side Comparison")
+            col1, col2 = st.columns(2)
+            with col1:
+                st.markdown("#### 🔴 Legacy Code (Classical / Vulnerable)")
+                st.code(legacy_code_input, language="c")
+            with col2:
+                st.markdown(f"#### 🟢 Post-Quantum Code (`{dest_file.name}`)")
+                st.code(quantum_code, language="c")
+
+            if diff_text:
+                with st.expander("🔍 View Unified Diff Patch", expanded=True):
+                    st.code(diff_text, language="diff")
+
+            st.download_button(
+                label=f"📥 Download {dest_file.name}",
+                data=quantum_code,
+                file_name=dest_file.name,
+                mime="text/x-c",
+            )
+
+
 if page == "📋 Backlog":
     render_backlog()
 elif page == "🔍 Finding Detail":
     render_finding_detail()
 elif page == "📊 Progress":
     render_progress()
+elif page == "⚡ Live Code Transformer":
+    render_live_transformer()
+

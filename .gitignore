@@ -47,3 +47,9 @@ coverage.xml
 # Databases
 *.db
 *.sqlite3
+
+# Generated quantum C output files
+out/
+
+# IDE stub headers (IntelliSense only)
+include/openssl/

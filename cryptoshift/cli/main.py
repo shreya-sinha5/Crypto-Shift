@@ -529,5 +529,35 @@ def db_transform(
         )
 
 
+@db_app.command(name="transform-file")
+def db_transform_file(
+    file_path: Path = typer.Argument(..., help="Path to legacy C source file to transform."),
+    output_path: Path | None = typer.Option(
+        None, "--out", "-o", help="Output path for transformed post-quantum C file."
+    ),
+    json_output: bool = typer.Option(False, "--json", help="Output machine-readable JSON."),
+) -> None:
+    """Transform a legacy C cryptographic file into post-quantum C code."""
+    from cryptoshift.codegen.transformer import transform_c_file
+
+    if not file_path.exists():
+        console.print(f"[bold red]Error:[/bold red] File '{file_path}' does not exist.")
+        raise typer.Exit(EXIT_TOOL_ERROR)
+
+    result = transform_c_file(file_path, output_path=output_path)
+
+    if json_output:
+        typer.echo(json.dumps(result, indent=2))
+    else:
+        console.print("\n[bold green]Transformation complete![/bold green]")
+        console.print(f"  • Source: [cyan]{file_path}[/cyan]")
+        console.print(f"  • Output: [bold green]{result['output_file']}[/bold green]")
+        if result["transformations"]:
+            console.print("  • Modernizations Applied:")
+            for t in result["transformations"]:
+                console.print(f"    - [yellow]{t}[/yellow]")
+
+
 if __name__ == "__main__":
     app()
+
