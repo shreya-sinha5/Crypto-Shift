@@ -7,10 +7,10 @@ It must NOT import any engine modules.
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
-from pathlib import Path
 import subprocess
 import sys
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
 
 import streamlit as st
@@ -369,7 +369,9 @@ def render_live_transformer() -> None:
                 "--json",
             ]
             try:
-                proc = subprocess.run(cmd, capture_output=True, text=True, check=True)
+                proc = subprocess.run(  # noqa: S603
+                    cmd, capture_output=True, text=True, check=True
+                )
                 res = json.loads(proc.stdout)
             except Exception as e:
                 st.error(f"Transformation error: {e}")
@@ -378,8 +380,8 @@ def render_live_transformer() -> None:
                 if scratch_src.exists():
                     try:
                         scratch_src.unlink()
-                    except Exception:
-                        pass
+                    except Exception:  # noqa: BLE001, S110
+                        pass  # best-effort cleanup, ignore errors
 
             quantum_code = res.get("quantum_code", "")
             diff_text = res.get("diff", "")
@@ -424,4 +426,3 @@ elif page == "📊 Progress":
     render_progress()
 elif page == "⚡ Live Code Transformer":
     render_live_transformer()
-

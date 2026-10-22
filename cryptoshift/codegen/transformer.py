@@ -8,8 +8,8 @@ from __future__ import annotations
 
 import difflib
 import json
-from pathlib import Path
 import re
+from pathlib import Path
 from typing import Any
 
 TEMPLATE_MAPPINGS = {
@@ -257,11 +257,7 @@ def generate_candidate_patch(
     new_lines = "\n".join(f"+{line}" for line in new_code.splitlines())
 
     patch = (
-        f"--- {src_file}\n"
-        f"+++ {dest_file}\n"
-        f"@@ -{line},5 +{line},5 @@\n"
-        f"{old_lines}\n"
-        f"{new_lines}\n"
+        f"--- {src_file}\n+++ {dest_file}\n@@ -{line},5 +{line},5 @@\n{old_lines}\n{new_lines}\n"
     )
     return patch
 
@@ -393,21 +389,17 @@ def transform_c_source(
     if benchmark_quantum_file.exists() and benchmark_legacy_file.exists():
         try:
             legacy_bench_content = benchmark_legacy_file.read_text(encoding="utf-8")
-            if (
-                legacy_code.strip() == legacy_bench_content.strip()
-                or base_name
-                in {
-                    "dh_exchange.c",
-                    "key_service.c",
-                    "signature_service.c",
-                    "tls_session.c",
-                    "hash_utils.c",
-                }
-            ):
+            if legacy_code.strip() == legacy_bench_content.strip() or base_name in {
+                "dh_exchange.c",
+                "key_service.c",
+                "signature_service.c",
+                "tls_session.c",
+                "hash_utils.c",
+            }:
                 quantum_code = benchmark_quantum_file.read_text(encoding="utf-8")
                 is_benchmark_match = True
-        except Exception:
-            pass
+        except Exception:  # noqa: BLE001
+            is_benchmark_match = False  # fall back to regex transform
 
     if not is_benchmark_match:
         quantum_code = legacy_code
@@ -435,16 +427,20 @@ def transform_c_source(
             quantum_code = re.sub(
                 r"DH_compute_key\s*\([^;]+;",
                 (
-                    "/* Quantum Lock: Hybrid X25519 + ML-KEM-768 Key Agreement (RFC 9370) */\n"
-                    "    hybrid_kem_derive_shared(ctx->hybrid_ctx, peer_pub, peer_pub_len, shared, shared_len);"
+                    "/* Quantum Lock: Hybrid X25519 + ML-KEM-768 Key Agreement"
+                    " (RFC 9370) */\n"
+                    "    hybrid_kem_derive_shared("
+                    "ctx->hybrid_ctx, peer_pub, peer_pub_len, shared, shared_len);"
                 ),
                 quantum_code,
             )
             quantum_code = re.sub(
                 r"ECDH_compute_key\s*\([^;]+;",
                 (
-                    "/* Quantum Lock: Hybrid X25519 + ML-KEM-768 Key Agreement (RFC 9370) */\n"
-                    "    hybrid_kem_derive_shared(ctx->hybrid_ctx, peer_pub, peer_pub_len, shared, shared_len);"
+                    "/* Quantum Lock: Hybrid X25519 + ML-KEM-768 Key Agreement"
+                    " (RFC 9370) */\n"
+                    "    hybrid_kem_derive_shared("
+                    "ctx->hybrid_ctx, peer_pub, peer_pub_len, shared, shared_len);"
                 ),
                 quantum_code,
             )
@@ -453,7 +449,9 @@ def transform_c_source(
         if "RSA_" in quantum_code or "rsa" in quantum_code.lower():
             pqc_standards.append("NIST FIPS 203 (ML-KEM) / FIPS 204 (ML-DSA)")
             if "RSA_sign" in quantum_code or "RSA_verify" in quantum_code:
-                applied.append("Migrated RSA-SHA256 signatures to ML-DSA-65 Lattice Signatures (NIST FIPS 204)")
+                applied.append(
+                    "Migrated RSA-SHA256 signatures to ML-DSA-65 Lattice Signatures (NIST FIPS 204)"
+                )
                 quantum_code = re.sub(
                     r"RSA_sign\s*\([^;]+;",
                     (
@@ -470,7 +468,10 @@ def transform_c_source(
                     ),
                     quantum_code,
                 )
-            if "RSA_public_encrypt" in quantum_code or "RSA_generate_key" in quantum_code or "rsa_context" in quantum_code:
+            rsa_enc = "RSA_public_encrypt" in quantum_code
+            rsa_gen = "RSA_generate_key" in quantum_code
+            rsa_ctx = "rsa_context" in quantum_code
+            if rsa_enc or rsa_gen or rsa_ctx:
                 applied.append("Migrated RSA key encapsulation to ML-KEM-768 (NIST FIPS 203)")
                 quantum_code = re.sub(r"\brsa_context_t\b", "ml_kem_context_t", quantum_code)
                 quantum_code = re.sub(
@@ -506,7 +507,9 @@ def transform_c_source(
             )
 
         # 5. Hashes: MD5 / SHA-1 -> SHA3-256
-        if "MD5_" in quantum_code or "SHA1_" in quantum_code or "md5" in quantum_code or "sha1" in quantum_code:
+        has_md5 = "MD5_" in quantum_code or "md5" in quantum_code
+        has_sha1 = "SHA1_" in quantum_code or "sha1" in quantum_code
+        if has_md5 or has_sha1:
             applied.append("Migrated broken MD5 / SHA-1 to NIST FIPS 202 SHA3-256")
             pqc_standards.append("NIST FIPS 202 (SHA-3)")
             quantum_code = re.sub(
@@ -559,7 +562,9 @@ def transform_c_source(
             )
     else:
         if "dh_exchange" in base_name:
-            applied.append("Migrated classic Diffie-Hellman & ECDH P-521 to Hybrid X25519 + ML-KEM-768")
+            applied.append(
+                "Migrated classic Diffie-Hellman & ECDH P-521 to Hybrid X25519 + ML-KEM-768"
+            )
             pqc_standards = ["NIST FIPS 203 (ML-KEM-768)", "RFC 9370 (Hybrid KEM)"]
         elif "key_service" in base_name:
             applied.append("Migrated RSA-2048 PKCS#1 v1.5 to ML-KEM-768 Key Encapsulation")
@@ -615,4 +620,3 @@ def transform_c_file(
         raise FileNotFoundError(f"Source file '{src}' does not exist.")
     code = src.read_text(encoding="utf-8")
     return transform_c_source(code, filename=src.name, out_file=output_path)
-

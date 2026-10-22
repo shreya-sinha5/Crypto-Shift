@@ -560,4 +560,3 @@ def db_transform_file(
 
 if __name__ == "__main__":
     app()
-
