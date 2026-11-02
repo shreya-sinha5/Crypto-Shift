@@ -1,0 +1,2275 @@
+{
+  "id": "cryptoshift",
+  "name": "CryptoShift (Live Scan)",
+  "description": "Dynamic architecture model automatically scanned from C:\\Users\\Hp\\Downloads\\CryptoShift",
+  "workspace_root": "C:\\Users\\Hp\\Downloads\\CryptoShift",
+  "files_scanned": 37,
+  "duration_ms": 716,
+  "techStack": [
+    {
+      "id": "ts_python",
+      "name": "Python 3",
+      "category": "Core Runtime",
+      "version": "3.10+",
+      "file": "*.py",
+      "icon": "🐍",
+      "status": "Detected in Repo",
+      "rationale": "Primary implementation language for core services and compute engines.",
+      "pros": [
+        "Rich scientific and AI ecosystem",
+        "Fast prototyping",
+        "Dynamic AST inspection"
+      ],
+      "cons": [
+        "GIL limitations for compute-heavy parallel threads"
+      ]
+    },
+    {
+      "id": "ts_streamlit",
+      "name": "Streamlit",
+      "category": "Frontend UI",
+      "version": "inferred",
+      "file": "cryptoshift\\control_centre\\app.py",
+      "icon": "🖥️",
+      "status": "Detected in Repo",
+      "rationale": "Interactive data app and dashboard framework.",
+      "pros": [
+        "Community standard",
+        "Fast integration",
+        "Well documented"
+      ],
+      "cons": [
+        "Requires dependency maintenance"
+      ]
+    },
+    {
+      "id": "ts_pytest",
+      "name": "Pytest",
+      "category": "Testing Framework",
+      "version": "inferred",
+      "file": "tests\\unit\\test_import_boundaries.py, tests\\unit\\test_legacy_db.py, tests\\unit\\test_schemas.py, tests\\unit\\test_transformer.py",
+      "icon": "🧪",
+      "status": "Detected in Repo",
+      "rationale": "Framework for writing simple and scalable tests.",
+      "pros": [
+        "Community standard",
+        "Fast integration",
+        "Well documented"
+      ],
+      "cons": [
+        "Requires dependency maintenance"
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "id": "subsystem_1",
+      "name": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "node_count": 34
+    },
+    {
+      "id": "subsystem_2",
+      "name": "Compute & Analysis Engine",
+      "layer": 3,
+      "color": "#f59e0b",
+      "node_count": 1
+    },
+    {
+      "id": "subsystem_3",
+      "name": "Data Access & Persistence",
+      "layer": 4,
+      "color": "#10b981",
+      "node_count": 2
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cryptoshift___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/__init__.py",
+      "lines": 10,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 10 LOC"
+    },
+    {
+      "id": "cryptoshift_cli___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/cli/__init__.py",
+      "lines": 4,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 4 LOC"
+    },
+    {
+      "id": "cryptoshift_cli_main",
+      "label": "main.py",
+      "subsystem": "Compute & Analysis Engine",
+      "layer": 3,
+      "color": "#f59e0b",
+      "file": "cryptoshift/cli/main.py",
+      "lines": 595,
+      "functions": [
+        "_output",
+        "_resolve_artifacts_dir",
+        "main",
+        "scan",
+        "enrich",
+        "transform",
+        "verify",
+        "pr",
+        "db_scan",
+        "db_list",
+        "db_summary",
+        "db_export",
+        "db_transform",
+        "db_transform_file"
+      ],
+      "classes": [],
+      "summary": "14 function(s), 0 class(es) — 595 LOC"
+    },
+    {
+      "id": "cryptoshift_codegen___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/codegen/__init__.py",
+      "lines": 20,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 20 LOC"
+    },
+    {
+      "id": "cryptoshift_codegen_transformer",
+      "label": "transformer.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/codegen/transformer.py",
+      "lines": 622,
+      "functions": [
+        "generate_candidate_patch",
+        "transform_finding",
+        "transform_all_findings",
+        "transform_c_source",
+        "transform_c_file"
+      ],
+      "classes": [],
+      "summary": "5 function(s), 0 class(es) — 622 LOC"
+    },
+    {
+      "id": "cryptoshift_control_centre___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/control_centre/__init__.py",
+      "lines": 5,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 5 LOC"
+    },
+    {
+      "id": "cryptoshift_control_centre_app",
+      "label": "app.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/control_centre/app.py",
+      "lines": 428,
+      "functions": [
+        "load_json",
+        "save_decision",
+        "get_risk_color",
+        "render_backlog",
+        "render_finding_detail",
+        "render_progress",
+        "render_live_transformer"
+      ],
+      "classes": [],
+      "summary": "7 function(s), 0 class(es) — 428 LOC"
+    },
+    {
+      "id": "cryptoshift_delivery___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/delivery/__init__.py",
+      "lines": 23,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 23 LOC"
+    },
+    {
+      "id": "cryptoshift_delivery_pr",
+      "label": "pr.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/delivery/pr.py",
+      "lines": 547,
+      "functions": [
+        "_load_json",
+        "write_audit_record",
+        "format_pr_body",
+        "get_git_remote_repo",
+        "create_pr_for_finding",
+        "run_delivery"
+      ],
+      "classes": [
+        "PROutcome"
+      ],
+      "summary": "6 function(s), 1 class(es) — 547 LOC"
+    },
+    {
+      "id": "cryptoshift_enrich___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/enrich/__init__.py",
+      "lines": 1,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 1 LOC"
+    },
+    {
+      "id": "cryptoshift_ingest___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/ingest/__init__.py",
+      "lines": 1,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 1 LOC"
+    },
+    {
+      "id": "cryptoshift_legacy_db___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/legacy_db/__init__.py",
+      "lines": 32,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 32 LOC"
+    },
+    {
+      "id": "cryptoshift_legacy_db_cbom",
+      "label": "cbom.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/legacy_db/cbom.py",
+      "lines": 147,
+      "functions": [
+        "findings_to_enriched_cbom",
+        "findings_to_cyclonedx_cbom"
+      ],
+      "classes": [],
+      "summary": "2 function(s), 0 class(es) — 147 LOC"
+    },
+    {
+      "id": "cryptoshift_legacy_db_db",
+      "label": "db.py",
+      "subsystem": "Data Access & Persistence",
+      "layer": 4,
+      "color": "#10b981",
+      "file": "cryptoshift/legacy_db/db.py",
+      "lines": 325,
+      "functions": [],
+      "classes": [
+        "CryptoDatabase"
+      ],
+      "summary": "0 function(s), 1 class(es) — 325 LOC"
+    },
+    {
+      "id": "cryptoshift_legacy_db_migrate",
+      "label": "migrate.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/legacy_db/migrate.py",
+      "lines": 35,
+      "functions": [
+        "generate_quantum_codebase"
+      ],
+      "classes": [],
+      "summary": "1 function(s), 0 class(es) — 35 LOC"
+    },
+    {
+      "id": "cryptoshift_legacy_db_sarif",
+      "label": "sarif.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/legacy_db/sarif.py",
+      "lines": 170,
+      "functions": [
+        "_rules_dictionary",
+        "findings_to_sarif_dict",
+        "write_sarif_file",
+        "read_sarif_file"
+      ],
+      "classes": [],
+      "summary": "4 function(s), 0 class(es) — 170 LOC"
+    },
+    {
+      "id": "cryptoshift_llm_gateway___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/llm_gateway/__init__.py",
+      "lines": 5,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 5 LOC"
+    },
+    {
+      "id": "cryptoshift_parsers___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/parsers/__init__.py",
+      "lines": 5,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 5 LOC"
+    },
+    {
+      "id": "cryptoshift_parsers_c___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/parsers/c/__init__.py",
+      "lines": 432,
+      "functions": [
+        "scan_file",
+        "scan_directory"
+      ],
+      "classes": [
+        "CryptoPattern",
+        "CryptoFinding"
+      ],
+      "summary": "2 function(s), 2 class(es) — 432 LOC"
+    },
+    {
+      "id": "cryptoshift_parsers_java___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/parsers/java/__init__.py",
+      "lines": 1,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 1 LOC"
+    },
+    {
+      "id": "cryptoshift_registry___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/registry/__init__.py",
+      "lines": 1,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 1 LOC"
+    },
+    {
+      "id": "cryptoshift_validator___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/validator/__init__.py",
+      "lines": 4,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 4 LOC"
+    },
+    {
+      "id": "cryptoshift_verify___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/verify/__init__.py",
+      "lines": 5,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 5 LOC"
+    },
+    {
+      "id": "cryptoshift_verify_trackA___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/verify/trackA/__init__.py",
+      "lines": 4,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 4 LOC"
+    },
+    {
+      "id": "cryptoshift_verify_trackB___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "cryptoshift/verify/trackB/__init__.py",
+      "lines": 6,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 6 LOC"
+    },
+    {
+      "id": "scripts_check_imports",
+      "label": "check_imports.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "scripts/check_imports.py",
+      "lines": 132,
+      "functions": [
+        "get_imports",
+        "check_control_centre",
+        "check_boundary_rules",
+        "main"
+      ],
+      "classes": [],
+      "summary": "4 function(s), 0 class(es) — 132 LOC"
+    },
+    {
+      "id": "scripts_validate_schemas",
+      "label": "validate_schemas.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "scripts/validate_schemas.py",
+      "lines": 68,
+      "functions": [
+        "main"
+      ],
+      "classes": [],
+      "summary": "1 function(s), 0 class(es) — 68 LOC"
+    },
+    {
+      "id": "tests___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "tests/__init__.py",
+      "lines": 1,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 1 LOC"
+    },
+    {
+      "id": "tests_golden___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "tests/golden/__init__.py",
+      "lines": 1,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 1 LOC"
+    },
+    {
+      "id": "tests_integration___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "tests/integration/__init__.py",
+      "lines": 1,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 1 LOC"
+    },
+    {
+      "id": "tests_unit___init__",
+      "label": "__init__.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "tests/unit/__init__.py",
+      "lines": 1,
+      "functions": [],
+      "classes": [],
+      "summary": "0 function(s), 0 class(es) — 1 LOC"
+    },
+    {
+      "id": "tests_unit_test_cli",
+      "label": "test_cli.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "tests/unit/test_cli.py",
+      "lines": 114,
+      "functions": [],
+      "classes": [
+        "TestCLIVersion",
+        "TestScanCommand",
+        "TestEnrichCommand",
+        "TestTransformCommand",
+        "TestVerifyCommand",
+        "TestPRCommand",
+        "TestExitCodes"
+      ],
+      "summary": "0 function(s), 7 class(es) — 114 LOC"
+    },
+    {
+      "id": "tests_unit_test_delivery",
+      "label": "test_delivery.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "tests/unit/test_delivery.py",
+      "lines": 128,
+      "functions": [
+        "test_format_pr_body",
+        "test_write_audit_record",
+        "test_create_pr_missing_approval",
+        "test_create_pr_rejected_decision",
+        "test_run_delivery_approved_flow",
+        "test_run_delivery_unapproved_flow"
+      ],
+      "classes": [],
+      "summary": "6 function(s), 0 class(es) — 128 LOC"
+    },
+    {
+      "id": "tests_unit_test_import_boundaries",
+      "label": "test_import_boundaries.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "tests/unit/test_import_boundaries.py",
+      "lines": 66,
+      "functions": [
+        "get_control_centre_files"
+      ],
+      "classes": [
+        "TestImportBoundaries"
+      ],
+      "summary": "1 function(s), 1 class(es) — 66 LOC"
+    },
+    {
+      "id": "tests_unit_test_legacy_db",
+      "label": "test_legacy_db.py",
+      "subsystem": "Data Access & Persistence",
+      "layer": 4,
+      "color": "#10b981",
+      "file": "tests/unit/test_legacy_db.py",
+      "lines": 167,
+      "functions": [
+        "sample_legacy_dir",
+        "in_memory_db",
+        "test_scan_legacy_code_directory",
+        "test_database_crud",
+        "test_sarif_generation",
+        "test_cbom_and_enriched_export",
+        "test_cli_db_scan_and_list"
+      ],
+      "classes": [],
+      "summary": "7 function(s), 0 class(es) — 167 LOC"
+    },
+    {
+      "id": "tests_unit_test_schemas",
+      "label": "test_schemas.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "tests/unit/test_schemas.py",
+      "lines": 130,
+      "functions": [
+        "get_schema_files"
+      ],
+      "classes": [
+        "TestSchemasValid",
+        "TestSampleValidation"
+      ],
+      "summary": "1 function(s), 2 class(es) — 130 LOC"
+    },
+    {
+      "id": "tests_unit_test_transformer",
+      "label": "test_transformer.py",
+      "subsystem": "Core Application Entrypoint",
+      "layer": 1,
+      "color": "#6366f1",
+      "file": "tests/unit/test_transformer.py",
+      "lines": 58,
+      "functions": [
+        "test_transform_c_source_custom",
+        "test_transform_c_file_benchmark",
+        "test_cli_transform_file"
+      ],
+      "classes": [],
+      "summary": "3 function(s), 0 class(es) — 58 LOC"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_cryptoshift_cli_main_cryptoshift_codegen_transformer",
+      "from": "cryptoshift_cli_main",
+      "to": "cryptoshift_codegen_transformer",
+      "from_file": "cryptoshift/cli/main.py",
+      "to_file": "cryptoshift/codegen/transformer.py",
+      "flowType": "sync",
+      "label": "invokes / imports",
+      "animated": true
+    },
+    {
+      "id": "conn_cryptoshift_codegen___init___cryptoshift_codegen_transformer",
+      "from": "cryptoshift_codegen___init__",
+      "to": "cryptoshift_codegen_transformer",
+      "from_file": "cryptoshift/codegen/__init__.py",
+      "to_file": "cryptoshift/codegen/transformer.py",
+      "flowType": "sync",
+      "label": "invokes / imports",
+      "animated": true
+    },
+    {
+      "id": "conn_cryptoshift_delivery___init___cryptoshift_delivery_pr",
+      "from": "cryptoshift_delivery___init__",
+      "to": "cryptoshift_delivery_pr",
+      "from_file": "cryptoshift/delivery/__init__.py",
+      "to_file": "cryptoshift/delivery/pr.py",
+      "flowType": "sync",
+      "label": "invokes / imports",
+      "animated": true
+    },
+    {
+      "id": "conn_cryptoshift_legacy_db___init___cryptoshift_legacy_db_cbom",
+      "from": "cryptoshift_legacy_db___init__",
+      "to": "cryptoshift_legacy_db_cbom",
+      "from_file": "cryptoshift/legacy_db/__init__.py",
+      "to_file": "cryptoshift/legacy_db/cbom.py",
+      "flowType": "sync",
+      "label": "invokes / imports",
+      "animated": true
+    },
+    {
+      "id": "conn_cryptoshift_legacy_db___init___cryptoshift_legacy_db_db",
+      "from": "cryptoshift_legacy_db___init__",
+      "to": "cryptoshift_legacy_db_db",
+      "from_file": "cryptoshift/legacy_db/__init__.py",
+      "to_file": "cryptoshift/legacy_db/db.py",
+      "flowType": "sync",
+      "label": "invokes / imports",
+      "animated": true
+    },
+    {
+      "id": "conn_cryptoshift_legacy_db___init___cryptoshift_legacy_db_sarif",
+      "from": "cryptoshift_legacy_db___init__",
+      "to": "cryptoshift_legacy_db_sarif",
+      "from_file": "cryptoshift/legacy_db/__init__.py",
+      "to_file": "cryptoshift/legacy_db/sarif.py",
+      "flowType": "sync",
+      "label": "invokes / imports",
+      "animated": true
+    },
+    {
+      "id": "conn_tests_unit_test_cli_cryptoshift_cli_main",
+      "from": "tests_unit_test_cli",
+      "to": "cryptoshift_cli_main",
+      "from_file": "tests/unit/test_cli.py",
+      "to_file": "cryptoshift/cli/main.py",
+      "flowType": "sync",
+      "label": "invokes / imports",
+      "animated": true
+    },
+    {
+      "id": "conn_tests_unit_test_legacy_db_cryptoshift_cli_main",
+      "from": "tests_unit_test_legacy_db",
+      "to": "cryptoshift_cli_main",
+      "from_file": "tests/unit/test_legacy_db.py",
+      "to_file": "cryptoshift/cli/main.py",
+      "flowType": "sync",
+      "label": "invokes / imports",
+      "animated": true
+    },
+    {
+      "id": "conn_tests_unit_test_transformer_cryptoshift_cli_main",
+      "from": "tests_unit_test_transformer",
+      "to": "cryptoshift_cli_main",
+      "from_file": "tests/unit/test_transformer.py",
+      "to_file": "cryptoshift/cli/main.py",
+      "flowType": "sync",
+      "label": "invokes / imports",
+      "animated": true
+    },
+    {
+      "id": "conn_tests_unit_test_transformer_cryptoshift_codegen_transformer",
+      "from": "tests_unit_test_transformer",
+      "to": "cryptoshift_codegen_transformer",
+      "from_file": "tests/unit/test_transformer.py",
+      "to_file": "cryptoshift/codegen/transformer.py",
+      "flowType": "sync",
+      "label": "invokes / imports",
+      "animated": true
+    }
+  ],
+  "patterns": [],
+  "adrs": [
+    {
+      "id": "ADR-001",
+      "title": "Selection of Modular Layered Architecture for CryptoShift",
+      "status": "Accepted",
+      "date": "Automated Inference",
+      "context": "Project structure spans 3 functional boundaries with distinct responsibility separation.",
+      "decision": "Enforce clean layered boundaries between presentation, domain services, compute engine, and storage.",
+      "consequences": "Maintains low coupling and allows individual components to be unit tested in isolation."
+    },
+    {
+      "id": "ADR-002",
+      "title": "Integration of Python 3 + Streamlit for High-Throughput Processing",
+      "status": "Accepted",
+      "date": "Automated Inference",
+      "context": "Codebase leverages Python 3, Streamlit, Pytest as primary ecosystem dependencies.",
+      "decision": "Standardize async execution and typed contract models across all internal module interfaces.",
+      "consequences": "Ensures sub-millisecond serialization latency and predictable runtime performance."
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "RULE-ARCH-01",
+      "severity": "error",
+      "description": "Presentation and API layers must not import private database models directly without a service boundary."
+    },
+    {
+      "rule_id": "RULE-ARCH-02",
+      "severity": "error",
+      "description": "Core calculation engine must remain pure and free from direct network or disk side-effects."
+    },
+    {
+      "rule_id": "RULE-ARCH-03",
+      "severity": "warning",
+      "description": "External client calls must route through adapter classes to handle offline degradation."
+    },
+    {
+      "rule_id": "RULE-ARCH-04",
+      "severity": "warning",
+      "description": "No cyclic dependencies permitted across functional subsystems."
+    }
+  ],
+  "findings": [
+    {
+      "id": "unused_46651cee",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\cli\\main.py:L11",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\cli\\main.py",
+          "excerpt_or_summary": "import 'annotations' at line 11 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_83b48228",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\codegen\\__init__.py:L6",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\codegen\\__init__.py",
+          "excerpt_or_summary": "import 'annotations' at line 6 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_66d94d8c",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\codegen\\__init__.py:L8",
+      "summary": "Unused import: 'transform_all_findings'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\codegen\\__init__.py",
+          "excerpt_or_summary": "import 'transform_all_findings' at line 8 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import transform_all_findings' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_8896e64e",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\codegen\\__init__.py:L8",
+      "summary": "Unused import: 'transform_c_file'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\codegen\\__init__.py",
+          "excerpt_or_summary": "import 'transform_c_file' at line 8 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import transform_c_file' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_5a22e6e2",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\codegen\\__init__.py:L8",
+      "summary": "Unused import: 'transform_c_source'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\codegen\\__init__.py",
+          "excerpt_or_summary": "import 'transform_c_source' at line 8 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import transform_c_source' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_ef755f8c",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\codegen\\__init__.py:L8",
+      "summary": "Unused import: 'transform_finding'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\codegen\\__init__.py",
+          "excerpt_or_summary": "import 'transform_finding' at line 8 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import transform_finding' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_4d0ce107",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\codegen\\transformer.py:L7",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\codegen\\transformer.py",
+          "excerpt_or_summary": "import 'annotations' at line 7 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_26b8acf6",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\control_centre\\app.py:L7",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\control_centre\\app.py",
+          "excerpt_or_summary": "import 'annotations' at line 7 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_f11c8408",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\__init__.py:L7",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\__init__.py",
+          "excerpt_or_summary": "import 'annotations' at line 7 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_a87903a3",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\__init__.py:L9",
+      "summary": "Unused import: 'PROutcome'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\__init__.py",
+          "excerpt_or_summary": "import 'PROutcome' at line 9 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import PROutcome' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_291148b5",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\__init__.py:L9",
+      "summary": "Unused import: 'create_pr_for_finding'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\__init__.py",
+          "excerpt_or_summary": "import 'create_pr_for_finding' at line 9 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import create_pr_for_finding' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_cc69db5e",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\__init__.py:L9",
+      "summary": "Unused import: 'format_pr_body'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\__init__.py",
+          "excerpt_or_summary": "import 'format_pr_body' at line 9 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import format_pr_body' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_4a7c4cd2",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\__init__.py:L9",
+      "summary": "Unused import: 'run_delivery'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\__init__.py",
+          "excerpt_or_summary": "import 'run_delivery' at line 9 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import run_delivery' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_81221e41",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\__init__.py:L9",
+      "summary": "Unused import: 'write_audit_record'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\__init__.py",
+          "excerpt_or_summary": "import 'write_audit_record' at line 9 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import write_audit_record' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_c633d0d4",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\pr.py:L7",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\pr.py",
+          "excerpt_or_summary": "import 'annotations' at line 7 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_36ab0717",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py:L7",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py",
+          "excerpt_or_summary": "import 'annotations' at line 7 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_beb04c21",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py:L9",
+      "summary": "Unused import: 'findings_to_cyclonedx_cbom'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py",
+          "excerpt_or_summary": "import 'findings_to_cyclonedx_cbom' at line 9 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import findings_to_cyclonedx_cbom' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_842774ac",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py:L9",
+      "summary": "Unused import: 'findings_to_enriched_cbom'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py",
+          "excerpt_or_summary": "import 'findings_to_enriched_cbom' at line 9 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import findings_to_enriched_cbom' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_d2a656e5",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py:L13",
+      "summary": "Unused import: 'DEFAULT_DB_PATH'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py",
+          "excerpt_or_summary": "import 'DEFAULT_DB_PATH' at line 13 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import DEFAULT_DB_PATH' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_190b251a",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py:L13",
+      "summary": "Unused import: 'CryptoDatabase'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py",
+          "excerpt_or_summary": "import 'CryptoDatabase' at line 13 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import CryptoDatabase' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_ef13cdac",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py:L14",
+      "summary": "Unused import: 'findings_to_sarif_dict'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py",
+          "excerpt_or_summary": "import 'findings_to_sarif_dict' at line 14 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import findings_to_sarif_dict' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_678b890c",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py:L14",
+      "summary": "Unused import: 'read_sarif_file'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py",
+          "excerpt_or_summary": "import 'read_sarif_file' at line 14 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import read_sarif_file' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_55f94785",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py:L14",
+      "summary": "Unused import: 'write_sarif_file'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py",
+          "excerpt_or_summary": "import 'write_sarif_file' at line 14 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import write_sarif_file' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_8b0e8103",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py:L19",
+      "summary": "Unused import: 'CryptoFinding'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py",
+          "excerpt_or_summary": "import 'CryptoFinding' at line 19 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import CryptoFinding' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_ec622925",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py:L19",
+      "summary": "Unused import: 'scan_directory'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py",
+          "excerpt_or_summary": "import 'scan_directory' at line 19 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import scan_directory' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_5e40b6f3",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py:L19",
+      "summary": "Unused import: 'scan_file'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\__init__.py",
+          "excerpt_or_summary": "import 'scan_file' at line 19 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import scan_file' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_b559af69",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\cbom.py:L7",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\cbom.py",
+          "excerpt_or_summary": "import 'annotations' at line 7 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_4c81111d",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\db.py:L7",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\db.py",
+          "excerpt_or_summary": "import 'annotations' at line 7 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_f528d16f",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\migrate.py:L8",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\migrate.py",
+          "excerpt_or_summary": "import 'annotations' at line 8 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_72406aff",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\sarif.py:L7",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\sarif.py",
+          "excerpt_or_summary": "import 'annotations' at line 7 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_d1f6b7e6",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\parsers\\c\\__init__.py:L14",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\parsers\\c\\__init__.py",
+          "excerpt_or_summary": "import 'annotations' at line 14 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_a2afd4d5",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\scripts\\check_imports.py:L15",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\scripts\\check_imports.py",
+          "excerpt_or_summary": "import 'annotations' at line 15 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_923ee930",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\scripts\\validate_schemas.py:L10",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\scripts\\validate_schemas.py",
+          "excerpt_or_summary": "import 'annotations' at line 10 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_872db59b",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_cli.py:L7",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_cli.py",
+          "excerpt_or_summary": "import 'annotations' at line 7 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_48c19833",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_delivery.py:L7",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_delivery.py",
+          "excerpt_or_summary": "import 'annotations' at line 7 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_15bb1eff",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_import_boundaries.py:L7",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_import_boundaries.py",
+          "excerpt_or_summary": "import 'annotations' at line 7 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_27c71aa8",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_legacy_db.py:L3",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_legacy_db.py",
+          "excerpt_or_summary": "import 'annotations' at line 3 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_0bff1c27",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_schemas.py:L9",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_schemas.py",
+          "excerpt_or_summary": "import 'annotations' at line 9 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "unused_942e0cd1",
+      "category": "unused_code",
+      "severity": "low",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_transformer.py:L3",
+      "summary": "Unused import: 'annotations'.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_transformer.py",
+          "excerpt_or_summary": "import 'annotations' at line 3 is never referenced.",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "Unused imports increase cognitive overhead and may indicate a dependency that can be removed, reducing install size.",
+      "suggested_action": "Remove the 'import annotations' statement.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_edf2dd3c",
+      "category": "complexity",
+      "severity": "high",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\cli\\main.py:L183",
+      "summary": "Function 'pr' has cyclomatic complexity 13.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\cli\\main.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 13 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_e1c5c2d7",
+      "category": "complexity",
+      "severity": "high",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\cli\\main.py:L256",
+      "summary": "Function 'db_scan' has cyclomatic complexity 12.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\cli\\main.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 12 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_bc59b75b",
+      "category": "complexity",
+      "severity": "medium",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\cli\\main.py:L452",
+      "summary": "Function 'db_export' has cyclomatic complexity 9.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\cli\\main.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 9 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_b4d540ab",
+      "category": "complexity",
+      "severity": "high",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\codegen\\transformer.py:L370",
+      "summary": "Function 'transform_c_source' has cyclomatic complexity 32.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\codegen\\transformer.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 32 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_9f6c09b2",
+      "category": "complexity",
+      "severity": "high",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\control_centre\\app.py:L141",
+      "summary": "Function 'render_finding_detail' has cyclomatic complexity 16.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\control_centre\\app.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 16 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_f73ef5c8",
+      "category": "complexity",
+      "severity": "high",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\control_centre\\app.py:L240",
+      "summary": "Function 'render_progress' has cyclomatic complexity 18.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\control_centre\\app.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 18 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_ee233f19",
+      "category": "complexity",
+      "severity": "high",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\control_centre\\app.py:L306",
+      "summary": "Function 'render_live_transformer' has cyclomatic complexity 16.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\control_centre\\app.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 16 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_3b4e6432",
+      "category": "complexity",
+      "severity": "medium",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\pr.py:L62",
+      "summary": "Function 'write_audit_record' has cyclomatic complexity 9.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\pr.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 9 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_98ed90ee",
+      "category": "complexity",
+      "severity": "medium",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\pr.py:L121",
+      "summary": "Function 'format_pr_body' has cyclomatic complexity 7.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\pr.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 7 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_e394e046",
+      "category": "complexity",
+      "severity": "high",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\pr.py:L230",
+      "summary": "Function 'create_pr_for_finding' has cyclomatic complexity 27.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\pr.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 27 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_53fd3edb",
+      "category": "complexity",
+      "severity": "high",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\pr.py:L496",
+      "summary": "Function 'run_delivery' has cyclomatic complexity 13.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\delivery\\pr.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 13 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_458e3d2c",
+      "category": "complexity",
+      "severity": "medium",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\cbom.py:L16",
+      "summary": "Function 'findings_to_enriched_cbom' has cyclomatic complexity 7.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\cbom.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 7 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_5c96e75f",
+      "category": "complexity",
+      "severity": "medium",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\db.py:L165",
+      "summary": "Function 'query_findings' has cyclomatic complexity 9.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\db.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 9 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_32268c4e",
+      "category": "complexity",
+      "severity": "medium",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\db.py:L241",
+      "summary": "Function 'get_summary' has cyclomatic complexity 7.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\db.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 7 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_e47ba6fc",
+      "category": "complexity",
+      "severity": "medium",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\sarif.py:L28",
+      "summary": "Function 'findings_to_sarif_dict' has cyclomatic complexity 7.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\legacy_db\\sarif.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 7 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_ed84c382",
+      "category": "complexity",
+      "severity": "medium",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\parsers\\c\\__init__.py:L390",
+      "summary": "Function 'scan_file' has cyclomatic complexity 7.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\cryptoshift\\parsers\\c\\__init__.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 7 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_3a8195bc",
+      "category": "complexity",
+      "severity": "medium",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\scripts\\check_imports.py:L49",
+      "summary": "Function 'get_imports' has cyclomatic complexity 7.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\scripts\\check_imports.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 7 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_f3381782",
+      "category": "complexity",
+      "severity": "medium",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\scripts\\check_imports.py:L67",
+      "summary": "Function 'check_control_centre' has cyclomatic complexity 7.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\scripts\\check_imports.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 7 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_62a7207b",
+      "category": "complexity",
+      "severity": "medium",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\scripts\\check_imports.py:L87",
+      "summary": "Function 'check_boundary_rules' has cyclomatic complexity 8.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\scripts\\check_imports.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 8 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_985a8ca8",
+      "category": "complexity",
+      "severity": "high",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\scripts\\validate_schemas.py:L22",
+      "summary": "Function 'main' has cyclomatic complexity 10.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\scripts\\validate_schemas.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 10 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_6f800956",
+      "category": "complexity",
+      "severity": "medium",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_cli.py:L98",
+      "summary": "Function 'TestExitCodes' has cyclomatic complexity 7.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_cli.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 7 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_938e191b",
+      "category": "complexity",
+      "severity": "medium",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_delivery.py:L23",
+      "summary": "Function 'test_format_pr_body' has cyclomatic complexity 7.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_delivery.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 7 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_dee95e69",
+      "category": "complexity",
+      "severity": "high",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_import_boundaries.py:L37",
+      "summary": "Function 'TestImportBoundaries' has cyclomatic complexity 11.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_import_boundaries.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 11 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_cc69b6ab",
+      "category": "complexity",
+      "severity": "high",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_import_boundaries.py:L45",
+      "summary": "Function 'test_no_engine_imports' has cyclomatic complexity 10.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_import_boundaries.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 10 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_9c371221",
+      "category": "complexity",
+      "severity": "high",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_legacy_db.py:L33",
+      "summary": "Function 'test_scan_legacy_code_directory' has cyclomatic complexity 13.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_legacy_db.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 13 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_8d18f261",
+      "category": "complexity",
+      "severity": "high",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_legacy_db.py:L52",
+      "summary": "Function 'test_database_crud' has cyclomatic complexity 10.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_legacy_db.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 10 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_0dbecf0f",
+      "category": "complexity",
+      "severity": "high",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_legacy_db.py:L84",
+      "summary": "Function 'test_sarif_generation' has cyclomatic complexity 10.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_legacy_db.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 10 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_c82d52da",
+      "category": "complexity",
+      "severity": "medium",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_legacy_db.py:L103",
+      "summary": "Function 'test_cbom_and_enriched_export' has cyclomatic complexity 9.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_legacy_db.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 9 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    },
+    {
+      "id": "cc_3ad442fd",
+      "category": "complexity",
+      "severity": "high",
+      "confidence": "high",
+      "location": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_legacy_db.py:L122",
+      "summary": "Function 'test_cli_db_scan_and_list' has cyclomatic complexity 10.",
+      "evidence": [
+        {
+          "source_type": "static_tool",
+          "source_reference": "C:\\Users\\Hp\\Downloads\\CryptoShift\\tests\\unit\\test_legacy_db.py",
+          "excerpt_or_summary": "Cyclomatic complexity = 10 (threshold: 7).",
+          "observed_or_inferred": "observed",
+          "limitations": ""
+        }
+      ],
+      "rationale": "High cyclomatic complexity correlates with increased defect rates and makes functions harder to test and understand.",
+      "suggested_action": "Decompose the function into smaller, single-responsibility functions and consider extracting conditional branches into named helpers.",
+      "validation_status": "not_validated",
+      "rule_id": null,
+      "created_at": "2026-11-02T18:25:05Z"
+    }
+  ]
+}
