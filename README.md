@@ -56,15 +56,6 @@ cryptoshift pr --finding-ids f-0042 --artifacts-dir artifacts/ --json
 | 3 | Findings need human input |
 | 4 | Approval missing/denied |
 
-## Architecture
-
-```
-CycloneDX CBOM → scan → enrich → transform → verify → pr
-                                                 ↕
-                                     Control Centre (Streamlit)
-                                     reads artifacts only
-```
-
 **Key principles:**
 - **CBOM-first:** Detection is a solved input; we focus on transformation + verification
 - **Hybrid by default:** Classical + PQC combined; never a hard cutover
