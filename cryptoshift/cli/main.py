@@ -196,15 +196,48 @@ def pr(
     Requires decision.json with decision == 'approved' for each finding.
     Creates one branch and one PR per finding. Never merges.
     """
+    from cryptoshift.delivery import run_delivery
+
     _resolve_artifacts_dir(artifacts_dir)
-    result = {
+
+    target_ids = (
+        [fid.strip() for fid in finding_ids.split(",") if fid.strip()]
+        if finding_ids
+        else None
+    )
+    exit_code, outcomes = run_delivery(
+        artifacts_dir=artifacts_dir,
+        finding_ids=target_ids,
+        dry_run=dry_run,
+    )
+
+    summary_data = {
         "command": "pr",
-        "status": "not_implemented",
-        "message": "PR command is not yet implemented. See Phase 5.",
-        "artifacts_dir": str(artifacts_dir),
+        "status": "success" if exit_code == 0 else "failed",
+        "exit_code": exit_code,
+        "dry_run": dry_run,
+        "processed_count": len(outcomes),
+        "results": [o.to_dict() for o in outcomes],
     }
-    _output(result, json_output)
-    raise typer.Exit(EXIT_TOOL_ERROR)
+
+    if json_output:
+        _output(summary_data, use_json=True)
+    else:
+        console.print("\n[bold cyan]CryptoShift PR Delivery Stage[/bold cyan]")
+        for outcome in outcomes:
+            is_ok = outcome.status in ("pr_opened", "created_local_branch", "dry_run")
+            icon = "✅" if is_ok else "❌"
+            color = "green" if is_ok else "red"
+            msg = f"  {icon} [bold {color}]{outcome.finding_id}[/bold {color}]: {outcome.message}"
+            console.print(msg)
+            if outcome.branch:
+                console.print(f"     [dim]• Branch:[/dim] [cyan]{outcome.branch}[/cyan]")
+            if outcome.pr_url:
+                console.print(f"     [dim]• PR / Ref:[/dim] [bold]{outcome.pr_url}[/bold]")
+            if outcome.audit_file:
+                console.print(f"     [dim]• Audit Log:[/dim] {outcome.audit_file}")
+
+    raise typer.Exit(exit_code)
 
 
 # ---------------------------------------------------------------------------

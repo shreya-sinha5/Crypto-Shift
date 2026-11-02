@@ -82,12 +82,17 @@ class TestVerifyCommand:
 
 
 class TestPRCommand:
-    """Test the pr subcommand skeleton."""
+    """Test the pr subcommand delivery behavior."""
 
-    def test_pr_returns_not_implemented(self) -> None:
-        result = runner.invoke(app, ["pr", "--json"])
-        assert result.exit_code == EXIT_TOOL_ERROR
-        assert "not_implemented" in result.stdout
+    def test_pr_rejects_unapproved_finding(self) -> None:
+        result = runner.invoke(app, ["pr", "--finding-ids", "f-9999", "--json"])
+        assert result.exit_code == 4  # EXIT_APPROVAL_MISSING
+        assert "missing_approval" in result.stdout
+
+    def test_pr_accepts_approved_finding_dry_run(self) -> None:
+        result = runner.invoke(app, ["pr", "--finding-ids", "f-0006", "--dry-run", "--json"])
+        assert result.exit_code == 0
+        assert "dry_run" in result.stdout
 
 
 class TestExitCodes:
