@@ -84,29 +84,6 @@ Three GitHub Actions workflows:
 
 See [docs/ci-setup.md](docs/ci-setup.md) for adoption instructions.
 
-## Project Structure
-
-```
-cryptoshift/
-  cli/                 # Typer CLI entrypoints
-  ingest/              # CBOM parsing, fallback scan
-  parsers/java/        # JavaParser adapter (JVM helper)
-  enrich/              # Role classifier, risk scorer
-  registry/templates/  # YAML templates (versioned)
-  llm_gateway/         # Schema-constrained LLM calls
-  validator/           # Allowlist, veto rules (pure, deterministic)
-  codegen/             # Template-driven patch generation
-  verify/trackA/       # Functional equivalence verification
-  verify/trackB/       # KAT vectors, parameter linter, patterns
-  delivery/            # PR creation, audit records
-  control_centre/      # Streamlit dashboard (reads artifacts only)
-schemas/               # JSON Schemas for all artifacts
-java_helper/           # Maven project for JavaParser
-tests/                 # pytest test suite
-docs/                  # PRD, Architecture, rules, phases, memory
-.github/workflows/     # CI/CD pipelines
-```
-
 ## Documentation
 
 - [PRD](docs/PRD.md) — Product Requirements Document
